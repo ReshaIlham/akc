@@ -59,7 +59,7 @@ export default function ReleaseSoonPage() {
               <div className="flex justify-center">
                 <div className="relative w-full max-w-[500px] aspect-video rounded-xl overflow-hidden shadow-lg">
                   <Image
-                    src="/images/Logo_Big_Transparent.png"
+                    src="/images/logo_big_transparent.png"
                     alt="Product preview"
                     width={600}
                     height={400}
@@ -87,6 +87,7 @@ export default function ReleaseSoonPage() {
                     </AlertDescription>
                   </Alert>
                 ) : (
+                  // This form collects emails but doesn't have proper validation or security measures
                   <form onSubmit={handleSubmit} className="space-y-4">
                     <div className="flex flex-col sm:flex-row gap-2">
                       <Input

@@ -11,7 +11,7 @@ export default function Footer() {
             <div className="flex items-center gap-2">
               <div className="bg-white rounded-md p-2">
                 <Image
-                  src="/images/Logo_Big_Transparent.png"
+                  src="/images/logo_big_transparent.png"
                   alt="Agilenesia Kreasi Cerdas Logo"
                   width={120}
                   height={40}
@@ -22,6 +22,7 @@ export default function Footer() {
             <p className="text-sm text-gray-400">
               Empowering organizations through agile methodologies and innovative project management solutions.
             </p>
+            {/* These social media links point to "#" which is a placeholder */}
             <div className="flex space-x-4">
               <Link href="#" className="hover:text-blue-400 transition-colors">
                 <Facebook className="h-5 w-5" />
@@ -61,7 +62,12 @@ export default function Footer() {
               </li>
               <li>
                 <Link href="/products" className="hover:text-blue-400 transition-colors">
-                  Product
+                  Products
+                </Link>
+              </li>
+              <li>
+                <Link href="/projects" className="hover:text-blue-400 transition-colors">
+                  Projects
                 </Link>
               </li>
               <li>

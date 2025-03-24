@@ -56,7 +56,7 @@ export default function ProductsPage() {
                     <CardContent className="flex-1">
                       <div className="rounded-lg overflow-hidden mb-4 bg-gray-100 flex items-center justify-center p-4">
                         <Image
-                          src="/images/Logo_Big_Transparent.png"
+                          src="/images/logo_big_transparent.png"
                           alt="AgileBoard dashboard"
                           width={200}
                           height={100}
@@ -113,7 +113,7 @@ export default function ProductsPage() {
                     <CardContent className="flex-1">
                       <div className="rounded-lg overflow-hidden mb-4 bg-gray-100 flex items-center justify-center p-4">
                         <Image
-                          src="/images/Logo_Big_Transparent.png"
+                          src="/images/logo_big_transparent.png"
                           alt="Pantau dashboard"
                           width={200}
                           height={100}
@@ -168,7 +168,7 @@ export default function ProductsPage() {
                     <CardContent className="flex-1">
                       <div className="rounded-lg overflow-hidden mb-4 bg-gray-100 flex items-center justify-center p-4">
                         <Image
-                          src="/images/Logo_Big_Transparent.png"
+                          src="/images/logo_big_transparent.png"
                           alt="Latih platform"
                           width={200}
                           height={100}
@@ -228,7 +228,7 @@ export default function ProductsPage() {
                     <CardContent className="flex-1">
                       <div className="rounded-lg overflow-hidden mb-4 bg-gray-100 flex items-center justify-center p-4">
                         <Image
-                          src="/images/Logo_Big_Transparent.png"
+                          src="/images/logo_big_transparent.png"
                           alt="Agile Fundamentals Kit"
                           width={200}
                           height={100}
@@ -285,7 +285,7 @@ export default function ProductsPage() {
                     <CardContent className="flex-1">
                       <div className="rounded-lg overflow-hidden mb-4 bg-gray-100 flex items-center justify-center p-4">
                         <Image
-                          src="/images/Logo_Big_Transparent.png"
+                          src="/images/logo_big_transparent.png"
                           alt="Scrum Master Toolkit"
                           width={200}
                           height={100}
@@ -342,7 +342,7 @@ export default function ProductsPage() {
                     <CardContent className="flex-1">
                       <div className="rounded-lg overflow-hidden mb-4 bg-gray-100 flex items-center justify-center p-4">
                         <Image
-                          src="/images/Logo_Big_Transparent.png"
+                          src="/images/logo_big_transparent.png"
                           alt="Agile Leadership Program"
                           width={200}
                           height={100}
@@ -402,7 +402,7 @@ export default function ProductsPage() {
                     <CardContent className="flex-1">
                       <div className="rounded-lg overflow-hidden mb-4 bg-gray-100 flex items-center justify-center p-4">
                         <Image
-                          src="/images/Logo_Big_Transparent.png"
+                          src="/images/logo_big_transparent.png"
                           alt="Agile Project Documentation"
                           width={200}
                           height={100}
@@ -457,7 +457,7 @@ export default function ProductsPage() {
                     <CardContent className="flex-1">
                       <div className="rounded-lg overflow-hidden mb-4 bg-gray-100 flex items-center justify-center p-4">
                         <Image
-                          src="/images/Logo_Big_Transparent.png"
+                          src="/images/logo_big_transparent.png"
                           alt="Project Management Toolkit"
                           width={200}
                           height={100}
@@ -514,7 +514,7 @@ export default function ProductsPage() {
                     <CardContent className="flex-1">
                       <div className="rounded-lg overflow-hidden mb-4 bg-gray-100 flex items-center justify-center p-4">
                         <Image
-                          src="/images/Logo_Big_Transparent.png"
+                          src="/images/logo_big_transparent.png"
                           alt="Agile Metrics Dashboard"
                           width={200}
                           height={100}
@@ -583,7 +583,7 @@ export default function ProductsPage() {
                     <CardContent className="flex-1">
                       <div className="rounded-lg overflow-hidden mb-4 bg-gray-100 flex items-center justify-center p-4">
                         <Image
-                          src="/images/Logo_Big_Transparent.png"
+                          src="/images/logo_big_transparent.png"
                           alt="Agile T-Shirts"
                           width={200}
                           height={100}
@@ -647,7 +647,7 @@ export default function ProductsPage() {
                     <CardContent className="flex-1">
                       <div className="rounded-lg overflow-hidden mb-4 bg-gray-100 flex items-center justify-center p-4">
                         <Image
-                          src="/images/Logo_Big_Transparent.png"
+                          src="/images/logo_big_transparent.png"
                           alt="Project Management Cards"
                           width={200}
                           height={100}
@@ -711,7 +711,7 @@ export default function ProductsPage() {
                     <CardContent className="flex-1">
                       <div className="rounded-lg overflow-hidden mb-4 bg-gray-100 flex items-center justify-center p-4">
                         <Image
-                          src="/images/Logo_Big_Transparent.png"
+                          src="/images/logo_big_transparent.png"
                           alt="Project Management Monopoly"
                           width={200}
                           height={100}

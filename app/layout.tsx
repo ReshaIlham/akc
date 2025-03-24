@@ -9,6 +9,7 @@ const inter = Inter({ subsets: ["latin"] })
 export const metadata: Metadata = {
   title: "Agilenesia Kreasi Cerdas",
   description: "Empowering organizations through agile methodologies and innovative project management solutions.",
+    generator: 'v0.dev'
 }
 
 export default function RootLayout({
@@ -30,3 +31,6 @@ export default function RootLayout({
   )
 }
 
+
+
+import './globals.css'

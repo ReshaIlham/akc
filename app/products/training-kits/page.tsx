@@ -71,7 +71,7 @@ export default function TrainingKitsPage() {
               <div className="flex justify-center">
                 <div className="relative w-full max-w-[500px] aspect-video rounded-xl overflow-hidden shadow-lg">
                   <Image
-                    src="/images/Logo_Big_Transparent.png"
+                    src="/images/logo_big_transparent.png"
                     alt="Agile Fundamentals Kit"
                     width={500}
                     height={300}

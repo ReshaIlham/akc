@@ -27,8 +27,8 @@ export default function AboutPage() {
               <div className="flex justify-center">
                 <div className="relative w-full max-w-[500px] aspect-video rounded-xl overflow-hidden">
                   <Image
-                    src="/placeholder.svg?height=400&width=600"
-                    alt="Team collaboration"
+                    src="/images/aboutus1.jpg"
+                    alt="Our team at sunset"
                     width={600}
                     height={400}
                     className="object-cover"
@@ -46,8 +46,8 @@ export default function AboutPage() {
               <div className="order-2 lg:order-1">
                 <div className="relative w-full max-w-[500px] aspect-square rounded-xl overflow-hidden">
                   <Image
-                    src="/placeholder.svg?height=500&width=500"
-                    alt="Our journey"
+                    src="/images/aboutus2.jpg"
+                    alt="Leadership silhouette"
                     width={500}
                     height={500}
                     className="object-cover"

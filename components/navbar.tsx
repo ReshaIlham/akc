@@ -52,7 +52,7 @@ export default function Navbar() {
     <header className="flex items-center h-16 px-4 border-b shrink-0 md:px-6 bg-white z-50 relative">
       <Link href="/" className="flex items-center gap-2 mr-4">
         <Image
-          src="/images/Logo_Big_Transparent.png"
+          src="/images/logo_big_transparent.png"
           alt="Agilenesia Kreasi Cerdas Logo"
           width={120}
           height={40}
@@ -70,7 +70,10 @@ export default function Navbar() {
           Services
         </Link>
         <Link href="/products" className="font-medium hover:text-blue-600 transition-colors">
-          Product
+          Products
+        </Link>
+        <Link href="/projects" className="font-medium hover:text-blue-600 transition-colors">
+          Projects
         </Link>
         <Link href="/contact" className="font-medium hover:text-blue-600 transition-colors">
           Contact
@@ -114,7 +117,14 @@ export default function Navbar() {
               className="font-medium text-lg hover:text-blue-600 transition-colors"
               onClick={() => setIsMenuOpen(false)}
             >
-              Product
+              Products
+            </Link>
+            <Link
+              href="/projects"
+              className="font-medium text-lg hover:text-blue-600 transition-colors"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Projects
             </Link>
             <Link
               href="/contact"
