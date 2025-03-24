@@ -1,4 +1,5 @@
 import Link from "next/link"
+import Image from "next/image"
 import { ArrowRight, BookOpen, CheckCircle, Compass, GraduationCap, Handshake, Users } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
@@ -40,8 +41,15 @@ export default function Home() {
                 </div>
               </div>
               <div className="flex justify-center">
-                <div className="relative w-full max-w-[500px] aspect-video rounded-xl bg-gradient-to-br from-blue-600 to-indigo-600 shadow-lg flex items-center justify-center">
-                  <div className="text-white text-2xl font-bold">Agilenesia</div>
+                <div className="relative w-full max-w-[600px] rounded-xl overflow-hidden shadow-lg">
+                  <Image
+                    src="/images/hero-collaboration.jpeg"
+                    alt="Team collaboration on a project"
+                    width={600}
+                    height={400}
+                    className="w-full object-cover"
+                    priority
+                  />
                   <div className="absolute -bottom-4 -right-4 bg-white p-4 rounded-lg shadow-lg">
                     <div className="flex items-center gap-2">
                       <CheckCircle className="h-5 w-5 text-green-500" />

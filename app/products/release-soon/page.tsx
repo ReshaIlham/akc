@@ -25,15 +25,6 @@ export default function ReleaseSoonPage() {
     setEmail("")
   }
 
-  // Calculate a release date 30 days from now
-  const releaseDate = new Date()
-  releaseDate.setDate(releaseDate.getDate() + 30)
-  const formattedDate = releaseDate.toLocaleDateString("en-US", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  })
-
   return (
     <div className="flex min-h-screen flex-col">
       <Navbar />
@@ -53,7 +44,7 @@ export default function ReleaseSoonPage() {
               </p>
               <div className="flex items-center justify-center space-x-4 text-sm font-medium">
                 <div className="flex flex-col items-center">
-                  <span className="text-3xl font-bold text-blue-600">{formattedDate}</span>
+                  <span className="text-3xl font-bold text-blue-600">Q3 2025</span>
                   <span className="text-gray-500">Estimated Release</span>
                 </div>
               </div>
@@ -68,11 +59,11 @@ export default function ReleaseSoonPage() {
               <div className="flex justify-center">
                 <div className="relative w-full max-w-[500px] aspect-video rounded-xl overflow-hidden shadow-lg">
                   <Image
-                    src="/placeholder.svg?height=400&width=600"
+                    src="/images/Logo_Big_Transparent.png"
                     alt="Product preview"
                     width={600}
                     height={400}
-                    className="object-cover"
+                    className="object-contain bg-white p-8"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end">
                     <div className="p-4 text-white">
@@ -124,100 +115,6 @@ export default function ReleaseSoonPage() {
                     </Button>
                   </Link>
                 </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Features Preview Section */}
-        <section className="w-full py-12 md:py-24 bg-white">
-          <div className="container px-4 md:px-6 mx-auto">
-            <div className="flex flex-col items-center justify-center space-y-4 text-center mb-8">
-              <h2 className="text-2xl font-bold tracking-tighter sm:text-3xl">What to Expect</h2>
-              <p className="max-w-[700px] text-gray-500">
-                Here's a sneak peek at some of the features we're working on.
-              </p>
-            </div>
-            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              <div className="flex flex-col space-y-3 p-6 bg-gray-50 rounded-xl">
-                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-blue-100">
-                  <svg className="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                  </svg>
-                </div>
-                <h3 className="text-xl font-bold">Intuitive Interface</h3>
-                <p className="text-gray-500">
-                  A user-friendly interface designed for maximum productivity and ease of use.
-                </p>
-              </div>
-              <div className="flex flex-col space-y-3 p-6 bg-gray-50 rounded-xl">
-                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-blue-100">
-                  <svg className="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                  </svg>
-                </div>
-                <h3 className="text-xl font-bold">Powerful Analytics</h3>
-                <p className="text-gray-500">
-                  Comprehensive analytics to help you track progress and make data-driven decisions.
-                </p>
-              </div>
-              <div className="flex flex-col space-y-3 p-6 bg-gray-50 rounded-xl">
-                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-blue-100">
-                  <svg className="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"
-                    />
-                  </svg>
-                </div>
-                <h3 className="text-xl font-bold">Team Collaboration</h3>
-                <p className="text-gray-500">
-                  Enhanced collaboration features to keep your team connected and aligned.
-                </p>
-              </div>
-              <div className="flex flex-col space-y-3 p-6 bg-gray-50 rounded-xl">
-                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-blue-100">
-                  <svg className="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"
-                    />
-                  </svg>
-                </div>
-                <h3 className="text-xl font-bold">Customizable Templates</h3>
-                <p className="text-gray-500">A library of templates to help you get started quickly and efficiently.</p>
-              </div>
-              <div className="flex flex-col space-y-3 p-6 bg-gray-50 rounded-xl">
-                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-blue-100">
-                  <svg className="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
-                    />
-                  </svg>
-                </div>
-                <h3 className="text-xl font-bold">Enterprise Security</h3>
-                <p className="text-gray-500">Advanced security features to keep your data safe and secure.</p>
-              </div>
-              <div className="flex flex-col space-y-3 p-6 bg-gray-50 rounded-xl">
-                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-blue-100">
-                  <svg className="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"
-                    />
-                  </svg>
-                </div>
-                <h3 className="text-xl font-bold">Integration Ecosystem</h3>
-                <p className="text-gray-500">Seamless integration with your favorite tools and platforms.</p>
               </div>
             </div>
           </div>
