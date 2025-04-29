@@ -1,142 +1,106 @@
 "use client"
 
-import type React from "react"
-
-import { Menu, X } from "lucide-react"
-import Link from "next/link"
-import Image from "next/image"
 import { useState, useEffect } from "react"
-
+import Link from "next/link"
+import { usePathname } from "next/navigation"
+import { Menu, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { cn } from "@/lib/utils"
 
-export default function Navbar() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
+export function Navbar() {
+  const [isOpen, setIsOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
+  const pathname = usePathname()
 
-  // Close menu when clicking outside
   useEffect(() => {
-    const handleClickOutside = () => {
-      if (isMenuOpen) {
-        setIsMenuOpen(false)
+    const handleScroll = () => {
+      if (window.scrollY > 10) {
+        setScrolled(true)
+      } else {
+        setScrolled(false)
       }
     }
 
-    // Add event listener only when menu is open
-    if (isMenuOpen) {
-      document.addEventListener("click", handleClickOutside)
-    }
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
 
-    return () => {
-      document.removeEventListener("click", handleClickOutside)
-    }
-  }, [isMenuOpen])
-
-  // Prevent scrolling when mobile menu is open
-  useEffect(() => {
-    if (isMenuOpen) {
-      document.body.style.overflow = "hidden"
-    } else {
-      document.body.style.overflow = "auto"
-    }
-
-    return () => {
-      document.body.style.overflow = "auto"
-    }
-  }, [isMenuOpen])
-
-  const handleMenuToggle = (e: React.MouseEvent) => {
-    e.stopPropagation() // Prevent event from bubbling up
-    setIsMenuOpen(!isMenuOpen)
-  }
+  const navLinks = [
+    { href: "/", label: "Home" },
+    { href: "/about", label: "About" },
+    { href: "/services", label: "Services" },
+    { href: "/products", label: "Products" },
+    { href: "/projects", label: "Projects" },
+    { href: "/contact", label: "Contact" },
+  ]
 
   return (
-    <header className="flex items-center h-16 px-4 border-b shrink-0 md:px-6 bg-white z-50 relative">
-      <Link href="/" className="flex items-center gap-2 mr-4">
-        <Image
-          src="/images/logo_big_transparent.png"
-          alt="Agilenesia Kreasi Cerdas Logo"
-          width={120}
-          height={40}
-          className="h-8 w-auto"
-        />
-      </Link>
-      <nav className="hidden md:flex flex-row items-center gap-5 text-sm lg:gap-6 ml-auto">
-        <Link href="/" className="font-medium hover:text-blue-600 transition-colors">
-          Home
+    <header
+      className={cn(
+        "fixed top-0 w-full z-50 transition-all duration-300",
+        scrolled ? "bg-white/90 backdrop-blur-md shadow-md py-3" : "bg-transparent py-5",
+      )}
+    >
+      <div className="container flex items-center justify-between">
+        <Link href="/" className="flex items-center space-x-2">
+          <span className="text-2xl font-extrabold text-agile-dark">
+            Agile<span className="text-agile-blue">nesia</span>
+          </span>
         </Link>
-        <Link href="/about" className="font-medium hover:text-blue-600 transition-colors">
-          About
-        </Link>
-        <Link href="/services" className="font-medium hover:text-blue-600 transition-colors">
-          Services
-        </Link>
-        <Link href="/products" className="font-medium hover:text-blue-600 transition-colors">
-          Products
-        </Link>
-        <Link href="/projects" className="font-medium hover:text-blue-600 transition-colors">
-          Projects
-        </Link>
-        <Link href="/contact" className="font-medium hover:text-blue-600 transition-colors">
-          Contact
-        </Link>
-      </nav>
-      <div className="flex items-center gap-4 md:ml-auto md:gap-2 lg:gap-4 md:hidden ml-auto">
-        <Button variant="ghost" size="icon" className="md:hidden z-50" onClick={handleMenuToggle}>
-          {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-          <span className="sr-only">Toggle Menu</span>
-        </Button>
+
+        {/* Desktop Navigation */}
+        <nav className="hidden md:flex items-center space-x-8">
+          {navLinks.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className={cn(
+                "text-sm font-medium transition-all duration-300 relative group",
+                pathname === link.href ? "text-agile-blue" : "text-agile-dark hover:text-agile-blue",
+              )}
+            >
+              {link.label}
+              <span
+                className={cn(
+                  "absolute -bottom-1 left-0 w-0 h-0.5 bg-agile-blue transition-all duration-300 group-hover:w-full",
+                  pathname === link.href ? "w-full" : "",
+                )}
+              ></span>
+            </Link>
+          ))}
+        </nav>
+
+        <Button className="hidden md:inline-flex bg-agile-blue hover:bg-agile-blue/90 text-white">Get Started</Button>
+
+        {/* Mobile Menu Button */}
+        <button className="md:hidden p-2" onClick={() => setIsOpen(!isOpen)} aria-label="Toggle menu">
+          {isOpen ? <X size={24} /> : <Menu size={24} />}
+        </button>
       </div>
-      {isMenuOpen && (
-        <div
-          className="fixed inset-0 top-16 bg-white z-40 md:hidden overflow-y-auto"
-          onClick={(e) => e.stopPropagation()}
-        >
-          <nav className="flex flex-col p-6 gap-6">
-            <Link
-              href="/"
-              className="font-medium text-lg hover:text-blue-600 transition-colors"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Home
-            </Link>
-            <Link
-              href="/about"
-              className="font-medium text-lg hover:text-blue-600 transition-colors"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              About
-            </Link>
-            <Link
-              href="/services"
-              className="font-medium text-lg hover:text-blue-600 transition-colors"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Services
-            </Link>
-            <Link
-              href="/products"
-              className="font-medium text-lg hover:text-blue-600 transition-colors"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Products
-            </Link>
-            <Link
-              href="/projects"
-              className="font-medium text-lg hover:text-blue-600 transition-colors"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Projects
-            </Link>
-            <Link
-              href="/contact"
-              className="font-medium text-lg hover:text-blue-600 transition-colors"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Contact
-            </Link>
-          </nav>
+
+      {/* Mobile Navigation */}
+      {isOpen && (
+        <div className="md:hidden absolute top-full left-0 w-full bg-white shadow-lg animate-fade-in">
+          <div className="container py-4 flex flex-col space-y-4">
+            {navLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={cn(
+                  "text-sm font-medium transition-colors",
+                  pathname === link.href ? "text-agile-blue" : "text-agile-dark hover:text-agile-blue",
+                )}
+                onClick={() => setIsOpen(false)}
+              >
+                {link.label}
+              </Link>
+            ))}
+            <Button className="w-full bg-agile-blue hover:bg-agile-blue/90 text-white" onClick={() => setIsOpen(false)}>
+              Get Started
+            </Button>
+          </div>
         </div>
       )}
     </header>
   )
 }
-
