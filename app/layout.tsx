@@ -1,52 +1,36 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { Inter, Poppins } from "next/font/google"
+import { Mona_Sans as FontSans } from "next/font/google"
 import "./globals.css"
-import { Navbar } from "@/components/navbar"
-import { Footer } from "@/components/footer"
+import { cn } from "@/lib/utils"
 import { ThemeProvider } from "@/components/theme-provider"
-import { CursorGlow } from "@/components/cursor-glow"
-import { PageTransition } from "@/components/page-transition"
+import Navbar from "@/components/navbar"
+import Footer from "@/components/footer"
 
-const inter = Inter({
+const fontSans = FontSans({
   subsets: ["latin"],
-  variable: "--font-inter",
-  display: "swap",
-})
-
-const poppins = Poppins({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800"],
-  variable: "--font-poppins",
-  display: "swap",
+  variable: "--font-sans",
 })
 
 export const metadata: Metadata = {
-  title: "Agilenesia - Project Management Services",
+  title: "Agilenesia | Project Management Solutions",
   description:
-    "Agilenesia provides project management services, coaching, consulting, education, training, and solutions.",
+    "Agilenesia provides professional project management services including coaching, consulting, training, and tailored solutions.",
     generator: 'v0.dev'
 }
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode
-}>) {
+}) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${inter.variable} ${poppins.className} font-sans`}>
+      <body className={cn("min-h-screen bg-background font-sans antialiased", fontSans.variable)}>
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
-          <div className="noise-bg"></div>
-          <div className="grid-bg"></div>
-          <CursorGlow />
-          <PageTransition>
-            <div className="flex min-h-screen flex-col">
-              <Navbar />
-              <main className="flex-1">{children}</main>
-              <Footer />
-            </div>
-          </PageTransition>
+          <Navbar />
+          <main>{children}</main>
+          <Footer />
         </ThemeProvider>
       </body>
     </html>

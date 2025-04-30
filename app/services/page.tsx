@@ -1,299 +1,370 @@
+"use client"
+
+import { useRef } from "react"
 import Image from "next/image"
 import Link from "next/link"
-import { ArrowRight, CheckCircle, Users, Briefcase, BookOpen, BarChart, Clock } from "lucide-react"
+import { motion, useInView } from "framer-motion"
+import { ArrowRight, CheckCircle } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { SectionHeading } from "@/components/section-heading"
-import { Reveal } from "@/components/reveal-animation"
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 
 export default function ServicesPage() {
+  const introRef = useRef(null)
+  const serviceRef1 = useRef(null)
+  const serviceRef2 = useRef(null)
+  const serviceRef3 = useRef(null)
+  const processRef = useRef(null)
+
+  const introInView = useInView(introRef, { once: true, amount: 0.3 })
+  const service1InView = useInView(serviceRef1, { once: true, amount: 0.3 })
+  const service2InView = useInView(serviceRef2, { once: true, amount: 0.3 })
+  const service3InView = useInView(serviceRef3, { once: true, amount: 0.3 })
+  const processInView = useInView(processRef, { once: true, amount: 0.3 })
+
+  const services = [
+    {
+      title: "Coaching & Consulting",
+      description: "Expert guidance to optimize your project management practices",
+      features: [
+        "One-on-one coaching for project managers",
+        "Team-level coaching to enhance collaboration",
+        "Project management office (PMO) consulting",
+        "Agile transformation consulting",
+        "Project recovery services",
+        "Customized consulting solutions",
+      ],
+      image: "/placeholder.svg?height=600&width=800&query=coaching_session",
+      ref: serviceRef1,
+    },
+    {
+      title: "Education & Training",
+      description: "Comprehensive learning programs to develop project management skills",
+      features: [
+        "Certified project management training",
+        "Agile and Scrum methodology workshops",
+        "Leadership development for project managers",
+        "Customized training programs",
+        "Virtual and in-person training options",
+        "Continuous learning support",
+      ],
+      image: "/placeholder.svg?height=600&width=800&query=training_workshop",
+      ref: serviceRef2,
+    },
+    {
+      title: "Project Management Solutions",
+      description: "Tailored strategies and tools to streamline project delivery",
+      features: [
+        "Project methodology development",
+        "Tool selection and implementation",
+        "Process optimization",
+        "Project portfolio management",
+        "Risk management frameworks",
+        "Performance measurement systems",
+      ],
+      image: "/placeholder.svg?height=600&width=800&query=project_management_tools",
+      ref: serviceRef3,
+    },
+  ]
+
+  const processSteps = [
+    {
+      number: "01",
+      title: "Assessment",
+      description:
+        "We conduct a thorough assessment of your current project management practices to identify strengths and areas for improvement.",
+    },
+    {
+      number: "02",
+      title: "Solution Design",
+      description:
+        "Based on the assessment findings, we design a tailored solution that addresses your specific needs and aligns with your organizational goals.",
+    },
+    {
+      number: "03",
+      title: "Implementation",
+      description:
+        "We work closely with your team to implement the solution, providing guidance and support throughout the process.",
+    },
+    {
+      number: "04",
+      title: "Evaluation",
+      description:
+        "We evaluate the impact of the solution and make any necessary adjustments to ensure optimal results.",
+    },
+  ]
+
   return (
-    <div className="pt-24">
-      {/* Hero Section */}
-      <section className="py-16 md:py-24 bg-agile-dark text-white">
-        <div className="container">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <Reveal>
-                <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6">
-                  Our <span className="text-agile-green">Services</span>
-                </h1>
-              </Reveal>
-              <Reveal delay={200}>
-                <p className="text-lg text-gray-300 mb-6">
-                  Comprehensive project management services tailored to meet your organization's unique needs and
-                  challenges.
-                </p>
-              </Reveal>
-              <Reveal delay={300}>
-                <Button className="bg-agile-green hover:bg-agile-green/90">
-                  Get Started
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </Button>
-              </Reveal>
-            </div>
-            <Reveal direction="left" delay={300}>
-              <div className="relative animated-border">
-                <div className="bg-white p-2 rounded-lg">
+    <div className="pt-20">
+      {/* Hero section */}
+      <section className="relative py-24 md:py-32 bg-muted/30">
+        <div className="container mx-auto px-4">
+          <div className="max-w-3xl mx-auto text-center">
+            <h1 className="text-4xl md:text-5xl font-bold mb-6">Our Services</h1>
+            <p className="text-xl text-muted-foreground">
+              Comprehensive project management solutions designed to help your organization succeed
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Introduction section */}
+      <section className="py-24" ref={introRef}>
+        <div className="container mx-auto px-4">
+          <motion.div
+            className="max-w-3xl mx-auto text-center"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: introInView ? 1 : 0, y: introInView ? 0 : 20 }}
+            transition={{ duration: 0.6 }}
+          >
+            <h2 className="text-3xl md:text-4xl font-bold mb-6">How We Can Help You</h2>
+            <p className="text-lg text-muted-foreground mb-12">
+              At Agilenesia, we offer a range of services designed to address your specific project management
+              challenges and help you achieve your strategic objectives. Our integrated approach ensures that you
+              receive the right combination of coaching, training, and solutions for your needs.
+            </p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {services.map((service, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: introInView ? 1 : 0, y: introInView ? 0 : 30 }}
+                transition={{ duration: 0.5, delay: 0.1 * index }}
+              >
+                <Card className="h-full">
+                  <CardHeader>
+                    <CardTitle>{service.title}</CardTitle>
+                    <CardDescription>{service.description}</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <ul className="space-y-2">
+                      {service.features.slice(0, 3).map((feature, idx) => (
+                        <li key={idx} className="flex items-start gap-2">
+                          <CheckCircle className="h-5 w-5 text-primary shrink-0 mt-0.5" />
+                          <span>{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </CardContent>
+                  <CardFooter>
+                    <Button variant="outline" asChild>
+                      <Link href={`#${service.title.toLowerCase().replace(/\s+/g, "-")}`}>Learn More</Link>
+                    </Button>
+                  </CardFooter>
+                </Card>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Detailed service sections */}
+      {services.map((service, index) => (
+        <section
+          key={index}
+          id={service.title.toLowerCase().replace(/\s+/g, "-")}
+          className={`py-24 ${index % 2 === 1 ? "bg-muted/30" : ""}`}
+          ref={service.ref}
+        >
+          <div className="container mx-auto px-4">
+            <div
+              className={`grid md:grid-cols-2 gap-12 items-center ${index % 2 === 1 ? "md:grid-flow-col-reverse" : ""}`}
+            >
+              <motion.div
+                initial={{ opacity: 0, x: index % 2 === 0 ? -30 : 30 }}
+                animate={{
+                  opacity:
+                    index === 0
+                      ? service1InView
+                        ? 1
+                        : 0
+                      : index === 1
+                        ? service2InView
+                          ? 1
+                          : 0
+                        : service3InView
+                          ? 1
+                          : 0,
+                  x:
+                    index === 0
+                      ? service1InView
+                        ? 0
+                        : index % 2 === 0
+                          ? -30
+                          : 30
+                      : index === 1
+                        ? service2InView
+                          ? 0
+                          : index % 2 === 0
+                            ? -30
+                            : 30
+                        : service3InView
+                          ? 0
+                          : index % 2 === 0
+                            ? -30
+                            : 30,
+                }}
+                transition={{ duration: 0.6 }}
+                className={`${index % 2 === 1 ? "md:order-2" : ""}`}
+              >
+                <h2 className="text-3xl font-bold mb-6">{service.title}</h2>
+                <p className="text-lg text-muted-foreground mb-8">{service.description}</p>
+
+                <div className="space-y-4">
+                  {service.features.map((feature, idx) => (
+                    <motion.div
+                      key={idx}
+                      className="flex items-start gap-3"
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{
+                        opacity:
+                          index === 0
+                            ? service1InView
+                              ? 1
+                              : 0
+                            : index === 1
+                              ? service2InView
+                                ? 1
+                                : 0
+                              : service3InView
+                                ? 1
+                                : 0,
+                        y:
+                          index === 0
+                            ? service1InView
+                              ? 0
+                              : 10
+                            : index === 1
+                              ? service2InView
+                                ? 0
+                                : 10
+                              : service3InView
+                                ? 0
+                                : 10,
+                      }}
+                      transition={{ duration: 0.3, delay: 0.1 * idx }}
+                    >
+                      <CheckCircle className="h-5 w-5 text-primary shrink-0 mt-0.5" />
+                      <span>{feature}</span>
+                    </motion.div>
+                  ))}
+                </div>
+
+                <div className="mt-8">
+                  <Button>
+                    Contact Us <ArrowRight className="ml-2 h-4 w-4" />
+                  </Button>
+                </div>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, x: index % 2 === 0 ? 30 : -30 }}
+                animate={{
+                  opacity:
+                    index === 0
+                      ? service1InView
+                        ? 1
+                        : 0
+                      : index === 1
+                        ? service2InView
+                          ? 1
+                          : 0
+                        : service3InView
+                          ? 1
+                          : 0,
+                  x:
+                    index === 0
+                      ? service1InView
+                        ? 0
+                        : index % 2 === 0
+                          ? 30
+                          : -30
+                      : index === 1
+                        ? service2InView
+                          ? 0
+                          : index % 2 === 0
+                            ? 30
+                            : -30
+                        : service3InView
+                          ? 0
+                          : index % 2 === 0
+                            ? 30
+                            : -30,
+                }}
+                transition={{ duration: 0.6 }}
+                className={`relative ${index % 2 === 1 ? "md:order-1" : ""}`}
+              >
+                <div className="relative rounded-2xl overflow-hidden shadow-xl">
                   <Image
-                    src="/project-dashboard-overview.png"
+                    src={service.image || "/placeholder.svg"}
+                    alt={service.title}
                     width={800}
                     height={600}
-                    alt="Project Management Dashboard"
-                    className="rounded-lg w-full h-auto"
+                    className="w-full"
                   />
                 </div>
-              </div>
-            </Reveal>
+                <div className="absolute -z-10 w-full h-full bg-primary/5 rounded-2xl -left-6 -bottom-6" />
+              </motion.div>
+            </div>
+          </div>
+        </section>
+      ))}
+
+      {/* Our Process section */}
+      <section className="py-24 bg-muted/30" ref={processRef}>
+        <div className="container mx-auto px-4">
+          <motion.div
+            className="text-center max-w-3xl mx-auto mb-16"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: processInView ? 1 : 0, y: processInView ? 0 : 20 }}
+            transition={{ duration: 0.6 }}
+          >
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Our Process</h2>
+            <p className="text-lg text-muted-foreground">
+              How we work with you to deliver effective project management solutions
+            </p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {processSteps.map((step, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: processInView ? 1 : 0, y: processInView ? 0 : 30 }}
+                transition={{ duration: 0.5, delay: 0.1 * index }}
+                className="bg-card p-6 rounded-xl shadow-md relative"
+              >
+                <div className="text-4xl font-bold text-primary/20 mb-4">{step.number}</div>
+                <h3 className="text-xl font-semibold mb-2">{step.title}</h3>
+                <p className="text-muted-foreground">{step.description}</p>
+
+                {index < processSteps.length - 1 && (
+                  <div className="hidden lg:block absolute top-1/2 -right-4 transform -translate-y-1/2 z-10">
+                    <ArrowRight className="h-8 w-8 text-muted-foreground/30" />
+                  </div>
+                )}
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Services List */}
-      <section className="py-16 md:py-24">
-        <div className="container">
-          <SectionHeading
-            title="Our Service Offerings"
-            subtitle="Tailored solutions to address your project management challenges"
-            color="blue"
-          />
-
-          <div className="grid grid-cols-1 gap-16">
-            {/* Service 1 */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-              <Reveal>
-                <div>
-                  <div className="inline-flex items-center justify-center p-3 bg-agile-blue/10 rounded-lg mb-4">
-                    <Users size={32} className="text-agile-blue" />
-                  </div>
-                  <h2 className="text-3xl font-bold mb-4">Project Management Coaching</h2>
-                  <p className="text-agile-gray mb-6">
-                    One-on-one coaching for project managers to enhance their skills and overcome specific challenges.
-                    Our coaching programs are tailored to the individual needs of each project manager.
-                  </p>
-                  <div className="space-y-3 mb-6">
-                    {[
-                      "Personalized guidance from experienced coaches",
-                      "Skill development in key project management areas",
-                      "Performance improvement strategies",
-                      "Career advancement support",
-                    ].map((feature, index) => (
-                      <div key={index} className="flex items-start">
-                        <CheckCircle className="text-agile-blue mr-3 mt-1 h-5 w-5" />
-                        <p className="text-agile-gray">{feature}</p>
-                      </div>
-                    ))}
-                  </div>
-                  <Button className="bg-agile-blue hover:bg-agile-blue/90">
-                    Learn More
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </Button>
-                </div>
-              </Reveal>
-              <Reveal direction="left">
-                <Image
-                  src="/coaching-session.png"
-                  width={600}
-                  height={400}
-                  alt="Project Management Coaching"
-                  className="rounded-lg shadow-lg"
-                />
-              </Reveal>
-            </div>
-
-            {/* Service 2 */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-              <Reveal direction="right" className="order-2 lg:order-1">
-                <Image
-                  src="/consulting-meeting.png"
-                  width={600}
-                  height={400}
-                  alt="Consulting Services"
-                  className="rounded-lg shadow-lg"
-                />
-              </Reveal>
-              <Reveal className="order-1 lg:order-2">
-                <div>
-                  <div className="inline-flex items-center justify-center p-3 bg-agile-red/10 rounded-lg mb-4">
-                    <Briefcase size={32} className="text-agile-red" />
-                  </div>
-                  <h2 className="text-3xl font-bold mb-4">Consulting Services</h2>
-                  <p className="text-agile-gray mb-6">
-                    Expert consulting to help organizations improve their project management practices and processes. We
-                    work with you to identify areas for improvement and implement effective solutions.
-                  </p>
-                  <div className="space-y-3 mb-6">
-                    {[
-                      "Process assessment and optimization",
-                      "Methodology implementation (Agile, Waterfall, Hybrid)",
-                      "PMO establishment and maturity development",
-                      "Project recovery for troubled projects",
-                    ].map((feature, index) => (
-                      <div key={index} className="flex items-start">
-                        <CheckCircle className="text-agile-red mr-3 mt-1 h-5 w-5" />
-                        <p className="text-agile-gray">{feature}</p>
-                      </div>
-                    ))}
-                  </div>
-                  <Button className="bg-agile-red hover:bg-agile-red/90">
-                    Learn More
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </Button>
-                </div>
-              </Reveal>
-            </div>
-
-            {/* Service 3 */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-              <Reveal>
-                <div>
-                  <div className="inline-flex items-center justify-center p-3 bg-agile-green/10 rounded-lg mb-4">
-                    <BookOpen size={32} className="text-agile-green" />
-                  </div>
-                  <h2 className="text-3xl font-bold mb-4">Education & Training</h2>
-                  <p className="text-agile-gray mb-6">
-                    Comprehensive training programs to develop project management skills across your organization. Our
-                    training programs are designed to build both theoretical knowledge and practical skills.
-                  </p>
-                  <div className="space-y-3 mb-6">
-                    {[
-                      "Certification preparation (PMP, PRINCE2, Agile)",
-                      "Customized workshops for specific needs",
-                      "Team training for collaborative project execution",
-                      "Agile methodologies and implementation",
-                    ].map((feature, index) => (
-                      <div key={index} className="flex items-start">
-                        <CheckCircle className="text-agile-green mr-3 mt-1 h-5 w-5" />
-                        <p className="text-agile-gray">{feature}</p>
-                      </div>
-                    ))}
-                  </div>
-                  <Button className="bg-agile-green hover:bg-agile-green/90">
-                    Learn More
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </Button>
-                </div>
-              </Reveal>
-              <Reveal direction="left">
-                <Image
-                  src="/training-session.png"
-                  width={600}
-                  height={400}
-                  alt="Education & Training"
-                  className="rounded-lg shadow-lg"
-                />
-              </Reveal>
-            </div>
-
-            {/* Service 4 */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-              <Reveal direction="right" className="order-2 lg:order-1">
-                <Image
-                  src="/project-solutions.png"
-                  width={600}
-                  height={400}
-                  alt="Project Management Solutions"
-                  className="rounded-lg shadow-lg"
-                />
-              </Reveal>
-              <Reveal className="order-1 lg:order-2">
-                <div>
-                  <div className="inline-flex items-center justify-center p-3 bg-agile-blue/10 rounded-lg mb-4">
-                    <BarChart size={32} className="text-agile-blue" />
-                  </div>
-                  <h2 className="text-3xl font-bold mb-4">Project Management Solutions</h2>
-                  <p className="text-agile-gray mb-6">
-                    Tailored solutions to address specific project management challenges and improve outcomes. We
-                    provide end-to-end support for your project management needs.
-                  </p>
-                  <div className="space-y-3 mb-6">
-                    {[
-                      "Tool implementation and integration",
-                      "Process optimization and standardization",
-                      "Portfolio management frameworks",
-                      "Resource allocation and optimization",
-                    ].map((feature, index) => (
-                      <div key={index} className="flex items-start">
-                        <CheckCircle className="text-agile-blue mr-3 mt-1 h-5 w-5" />
-                        <p className="text-agile-gray">{feature}</p>
-                      </div>
-                    ))}
-                  </div>
-                  <Button className="bg-agile-blue hover:bg-agile-blue/90">
-                    Learn More
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </Button>
-                </div>
-              </Reveal>
-            </div>
-
-            {/* Service 5 */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-              <Reveal>
-                <div>
-                  <div className="inline-flex items-center justify-center p-3 bg-agile-red/10 rounded-lg mb-4">
-                    <Clock size={32} className="text-agile-red" />
-                  </div>
-                  <h2 className="text-3xl font-bold mb-4">Agile Transformation</h2>
-                  <p className="text-agile-gray mb-6">
-                    Guide your organization through the transition to agile project management methodologies. We help
-                    you implement agile practices that drive innovation and adaptability.
-                  </p>
-                  <div className="space-y-3 mb-6">
-                    {[
-                      "Agile coaching and mentoring",
-                      "Scrum implementation and optimization",
-                      "Kanban systems and workflow management",
-                      "Hybrid approaches for complex environments",
-                    ].map((feature, index) => (
-                      <div key={index} className="flex items-start">
-                        <CheckCircle className="text-agile-red mr-3 mt-1 h-5 w-5" />
-                        <p className="text-agile-gray">{feature}</p>
-                      </div>
-                    ))}
-                  </div>
-                  <Button className="bg-agile-red hover:bg-agile-red/90">
-                    Learn More
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </Button>
-                </div>
-              </Reveal>
-              <Reveal direction="left">
-                <Image
-                  src="/agile-transformation.png"
-                  width={600}
-                  height={400}
-                  alt="Agile Transformation"
-                  className="rounded-lg shadow-lg"
-                />
-              </Reveal>
+      {/* CTA section */}
+      <section className="py-24">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto text-center bg-primary/5 rounded-2xl p-12">
+            <h2 className="text-3xl md:text-4xl font-bold mb-6">Ready to Enhance Your Project Management?</h2>
+            <p className="text-lg mb-8">
+              Contact us today to discuss how our services can help your organization achieve project success.
+            </p>
+            <div className="flex flex-col sm:flex-row justify-center gap-4">
+              <Button size="lg">Contact Us</Button>
+              <Button size="lg" variant="outline">
+                Schedule a Consultation
+              </Button>
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-16 md:py-24 bg-gradient-primary text-white">
-        <div className="container">
-          <Reveal>
-            <div className="text-center max-w-3xl mx-auto">
-              <h2 className="text-4xl md:text-5xl font-extrabold mb-6">Ready to Transform Your Project Management?</h2>
-              <p className="text-lg text-gray-100 mb-8">
-                Contact us today to discuss how our services can help your organization improve project outcomes and
-                achieve strategic objectives.
-              </p>
-              <div className="flex flex-col sm:flex-row justify-center gap-4">
-                <Link href="/contact">
-                  <Button size="lg" className="bg-white text-agile-blue hover:bg-gray-100">
-                    Contact Us
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </Button>
-                </Link>
-                <Button size="lg" variant="outline" className="text-white border-white hover:bg-white/10">
-                  Download Service Catalog
-                </Button>
-              </div>
-            </div>
-          </Reveal>
         </div>
       </section>
     </div>

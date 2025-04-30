@@ -1,129 +1,98 @@
 import Link from "next/link"
-import { Facebook, Twitter, Instagram, Linkedin, Mail, Phone, MapPin } from "lucide-react"
+import { Facebook, Instagram, Linkedin, Twitter } from "lucide-react"
 
-export function Footer() {
+export default function Footer() {
   return (
-    <footer className="bg-agile-dark text-white">
-      <div className="container py-12 md:py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+    <footer className="bg-muted/40">
+      <div className="container mx-auto px-4 py-12 md:py-16">
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
           <div>
-            <h3 className="text-xl font-bold mb-4">
-              Agile<span className="text-agile-blue">nesia</span>
-            </h3>
-            <p className="text-gray-300 mb-4">
-              Empowering organizations through effective project management solutions, coaching, and training.
+            <Link href="/" className="inline-block">
+              <span className="text-xl font-bold">Agilenesia</span>
+            </Link>
+            <p className="mt-4 text-muted-foreground">
+              Empowering organizations through effective project management solutions.
             </p>
-            <div className="flex space-x-4">
-              <Link href="#" className="text-gray-300 hover:text-agile-red transition-colors">
+            <div className="mt-6 flex space-x-4">
+              <Link href="#" className="text-muted-foreground hover:text-foreground">
                 <Facebook size={20} />
                 <span className="sr-only">Facebook</span>
               </Link>
-              <Link href="#" className="text-gray-300 hover:text-agile-green transition-colors">
+              <Link href="#" className="text-muted-foreground hover:text-foreground">
                 <Twitter size={20} />
                 <span className="sr-only">Twitter</span>
               </Link>
-              <Link href="#" className="text-gray-300 hover:text-agile-blue transition-colors">
+              <Link href="#" className="text-muted-foreground hover:text-foreground">
                 <Instagram size={20} />
                 <span className="sr-only">Instagram</span>
               </Link>
-              <Link href="#" className="text-gray-300 hover:text-agile-red transition-colors">
+              <Link href="#" className="text-muted-foreground hover:text-foreground">
                 <Linkedin size={20} />
                 <span className="sr-only">LinkedIn</span>
               </Link>
             </div>
           </div>
-
           <div>
-            <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
-            <ul className="space-y-2">
+            <h3 className="text-lg font-medium">Services</h3>
+            <ul className="mt-4 space-y-2">
               <li>
-                <Link href="/" className="text-gray-300 hover:text-white transition-colors">
-                  Home
+                <Link href="/services" className="text-muted-foreground hover:text-foreground">
+                  Coaching & Consulting
                 </Link>
               </li>
               <li>
-                <Link href="/about" className="text-gray-300 hover:text-white transition-colors">
-                  About Us
-                </Link>
-              </li>
-              <li>
-                <Link href="/services" className="text-gray-300 hover:text-white transition-colors">
-                  Services
-                </Link>
-              </li>
-              <li>
-                <Link href="/products" className="text-gray-300 hover:text-white transition-colors">
-                  Products
-                </Link>
-              </li>
-              <li>
-                <Link href="/projects" className="text-gray-300 hover:text-white transition-colors">
-                  Projects
-                </Link>
-              </li>
-              <li>
-                <Link href="/contact" className="text-gray-300 hover:text-white transition-colors">
-                  Contact
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          <div>
-            <h3 className="text-lg font-semibold mb-4">Services</h3>
-            <ul className="space-y-2">
-              <li>
-                <Link href="/services" className="text-gray-300 hover:text-white transition-colors">
-                  Project Management Coaching
-                </Link>
-              </li>
-              <li>
-                <Link href="/services" className="text-gray-300 hover:text-white transition-colors">
-                  Consulting Services
-                </Link>
-              </li>
-              <li>
-                <Link href="/services" className="text-gray-300 hover:text-white transition-colors">
+                <Link href="/services" className="text-muted-foreground hover:text-foreground">
                   Education & Training
                 </Link>
               </li>
               <li>
-                <Link href="/services" className="text-gray-300 hover:text-white transition-colors">
+                <Link href="/services" className="text-muted-foreground hover:text-foreground">
                   Project Management Solutions
                 </Link>
               </li>
             </ul>
           </div>
-
           <div>
-            <h3 className="text-lg font-semibold mb-4">Contact Us</h3>
-            <ul className="space-y-3">
-              <li className="flex items-start">
-                <MapPin size={20} className="mr-2 mt-1 text-agile-red" />
-                <span className="text-gray-300">
-                  123 Project Street, Suite 100
-                  <br />
-                  Jakarta, Indonesia 12345
-                </span>
-              </li>
-              <li className="flex items-center">
-                <Phone size={20} className="mr-2 text-agile-green" />
-                <Link href="tel:+6281234567890" className="text-gray-300 hover:text-white transition-colors">
-                  +62 812 3456 7890
+            <h3 className="text-lg font-medium">Company</h3>
+            <ul className="mt-4 space-y-2">
+              <li>
+                <Link href="/about" className="text-muted-foreground hover:text-foreground">
+                  About Us
                 </Link>
               </li>
-              <li className="flex items-center">
-                <Mail size={20} className="mr-2 text-agile-blue" />
-                <Link href="mailto:info@agilenesia.com" className="text-gray-300 hover:text-white transition-colors">
-                  info@agilenesia.com
+              <li>
+                <Link href="/projects" className="text-muted-foreground hover:text-foreground">
+                  Case Studies
+                </Link>
+              </li>
+              <li>
+                <Link href="/contact" className="text-muted-foreground hover:text-foreground">
+                  Contact
                 </Link>
               </li>
             </ul>
           </div>
+          <div>
+            <h3 className="text-lg font-medium">Contact</h3>
+            <ul className="mt-4 space-y-2">
+              <li className="text-muted-foreground">Jakarta, Indonesia</li>
+              <li>
+                <a href="mailto:info@agilenesia.com" className="text-muted-foreground hover:text-foreground">
+                  info@agilenesia.com
+                </a>
+              </li>
+              <li>
+                <a href="tel:+6281234567890" className="text-muted-foreground hover:text-foreground">
+                  +62 812 3456 7890
+                </a>
+              </li>
+            </ul>
+          </div>
         </div>
-
-        <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400 text-sm">
-          <p>&copy; {new Date().getFullYear()} Agilenesia. All rights reserved.</p>
+        <div className="mt-12 border-t border-muted-foreground/20 pt-8">
+          <p className="text-center text-sm text-muted-foreground">
+            © {new Date().getFullYear()} Agilenesia. All rights reserved.
+          </p>
         </div>
       </div>
     </footer>
