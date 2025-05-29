@@ -8,6 +8,7 @@ import { ArrowRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Reveal } from "@/components/reveal-animation"
 import { cn } from "@/lib/utils"
+import Link from "next/link"
 
 interface HeroEnhancedProps {
   title: React.ReactNode
@@ -16,6 +17,7 @@ interface HeroEnhancedProps {
   ctaHref?: string
   secondaryCtaText?: string
   secondaryCtaHref?: string
+  onSecondaryCtaClick?: () => void // Tambahkan prop ini
   imageSrc: string
   imageAlt: string
   reversed?: boolean
@@ -35,6 +37,7 @@ export function HeroEnhanced({
   ctaHref = "#",
   secondaryCtaText = "Learn More",
   secondaryCtaHref = "#",
+  onSecondaryCtaClick, // Tambahkan parameter ini
   imageSrc,
   imageAlt,
   reversed = false,
@@ -74,6 +77,25 @@ export function HeroEnhanced({
       window.removeEventListener("mousemove", handleMouseMove)
     }
   }, [])
+
+  // Function to handle smooth scroll without changing URL
+  const handleScrollToSection = (targetId: string) => {
+    const element = document.getElementById(targetId)
+    if (element) {
+      element.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      })
+    }
+  }
+
+  // Check if ctaHref is an anchor link (starts with #)
+  const isAnchorLink = ctaHref.startsWith("#")
+  const targetId = isAnchorLink ? ctaHref.substring(1) : "" // Remove # from the beginning
+
+  // Check if secondaryCtaHref is an anchor link (starts with #)
+  const isSecondaryAnchorLink = secondaryCtaHref.startsWith("#")
+  const secondaryTargetId = isSecondaryAnchorLink ? secondaryCtaHref.substring(1) : "" // Remove # from the beginning
 
   // Define gradient and blob colors based on variant
   const gradientStyles = {
@@ -193,13 +215,37 @@ export function HeroEnhanced({
             </Reveal>
             <Reveal delay={400}>
               <div className="flex flex-col sm:flex-row gap-4">
-                <Button size="lg" variant="white" className="group" href={ctaHref}>
-                  {ctaText}
-                  <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                </Button>
-                <Button size="lg" variant="outlineDark" href={secondaryCtaHref}>
-                  {secondaryCtaText}
-                </Button>
+                {/* Primary CTA Button - Handle anchor links with scroll, others with Link */}
+                {isAnchorLink ? (
+                  <Button size="lg" variant="white" className="group" onClick={() => handleScrollToSection(targetId)}>
+                    {ctaText}
+                    <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                  </Button>
+                ) : (
+                  <Link href={ctaHref}>
+                    <Button size="lg" variant="white" className="group">
+                      {ctaText}
+                      <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                    </Button>
+                  </Link>
+                )}
+
+                {/* Secondary CTA Button - Handle onClick, anchor links, or Link */}
+                {onSecondaryCtaClick ? (
+                  <Button size="lg" variant="outlineDark" onClick={onSecondaryCtaClick}>
+                    {secondaryCtaText}
+                  </Button>
+                ) : isSecondaryAnchorLink ? (
+                  <Button size="lg" variant="outlineDark" onClick={() => handleScrollToSection(secondaryTargetId)}>
+                    {secondaryCtaText}
+                  </Button>
+                ) : (
+                  <Link href={secondaryCtaHref}>
+                    <Button size="lg" variant="outlineDark">
+                      {secondaryCtaText}
+                    </Button>
+                  </Link>
+                )}
               </div>
             </Reveal>
           </div>

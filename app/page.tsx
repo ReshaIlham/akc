@@ -2,12 +2,13 @@
 
 import { useEffect } from "react"
 import Link from "next/link"
-import Image from "next/image"
 import { ArrowRight, Users, Briefcase, Award } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Reveal } from "@/components/reveal-animation"
 import { HeroEnhanced } from "@/components/hero-enhanced"
+import { MovingClients } from "@/components/moving-clients"
+import { TestimonialsSlider } from "@/components/testimonials-slider"
 
 export default function Home() {
   useEffect(() => {
@@ -34,7 +35,7 @@ export default function Home() {
 
   return (
     <div className="overflow-hidden">
-      {/* 1. Hero Section */}
+      {/* 1. Hero Section - Updated CTAs */}
       <HeroEnhanced
         title={
           <>
@@ -44,15 +45,15 @@ export default function Home() {
         }
         subtitle="Agilenesia provides comprehensive project management services, coaching, consulting, and training to help your organization succeed."
         ctaText="Get Started"
-        ctaHref="/contact"
+        ctaHref="#what-we-offer"
         secondaryCtaText="Learn More"
         secondaryCtaHref="/about"
         imageSrc="/project-dashboard-overview.png"
         imageAlt="Project Management Dashboard"
       />
 
-      {/* 2. Value Proposition Section */}
-      <section className="py-16 md:py-24 relative overflow-hidden">
+      {/* 2. Value Proposition Section - Added ID for anchor link */}
+      <section id="what-we-offer" className="py-16 md:py-24 relative overflow-hidden">
         <div className="absolute inset-0 dark:opacity-20 opacity-5">
           <div className="absolute top-0 left-0 w-full h-full bg-grid-pattern-enhanced"></div>
         </div>
@@ -133,45 +134,13 @@ export default function Home() {
             </p>
           </Reveal>
 
-          {/* Client Logos */}
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 mb-16">
-            {[1, 2, 3, 4, 5, 6].map((index) => (
-              <Reveal key={index} delay={index * 50}>
-                <div className="flex items-center justify-center h-20 bg-white dark:bg-gray-700 rounded-lg shadow-sm hover:shadow-md transition-shadow">
-                  <div className="text-agile-gray dark:text-gray-300 font-semibold">Client {index}</div>
-                </div>
-              </Reveal>
-            ))}
+          {/* Moving Client Logos */}
+          <div className="mb-16">
+            <MovingClients />
           </div>
 
-          {/* Featured Testimonial */}
-          <Reveal>
-            <div className="bg-white dark:bg-gray-700 p-8 rounded-xl shadow-lg max-w-4xl mx-auto">
-              <div className="flex flex-col md:flex-row items-center md:items-start gap-6">
-                <div className="w-24 h-24 rounded-full overflow-hidden flex-shrink-0 border-4 border-agile-blue/20 dark:border-agile-blue-dark/20">
-                  <Image src="/testimonial-1.png" width={96} height={96} alt="Sarah Johnson" className="object-cover" />
-                </div>
-                <div>
-                  <svg
-                    className="h-8 w-8 text-agile-blue/30 dark:text-agile-blue-dark/30 mb-4"
-                    fill="currentColor"
-                    viewBox="0 0 32 32"
-                  >
-                    <path d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.8 3.456-8.256 9.12-8.256 15.36 0 5.088 3.072 8.064 6.624 8.064 3.264 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z" />
-                  </svg>
-                  <p className="text-lg mb-6 text-agile-gray dark:text-gray-300">
-                    Working with Agilenesia transformed our project management processes. Their expert team helped us
-                    implement agile methodologies that increased our delivery speed by 40% and significantly improved
-                    team collaboration.
-                  </p>
-                  <div>
-                    <h4 className="font-bold text-xl">Sarah Johnson</h4>
-                    <p className="text-agile-gray dark:text-gray-400">CTO, TechCorp Global</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </Reveal>
+          {/* Testimonials Slider */}
+          <TestimonialsSlider />
         </div>
       </section>
 
@@ -277,10 +246,8 @@ export default function Home() {
             <Reveal direction="left">
               <div className="relative">
                 <div className="absolute -inset-1 bg-agile-green/30 dark:bg-agile-green-dark/30 blur-lg"></div>
-                <Image
+                <img
                   src="/project-overview-dashboard.png"
-                  width={800}
-                  height={600}
                   alt="Our Proven Methodology"
                   className="w-full h-auto rounded-lg relative z-10"
                 />

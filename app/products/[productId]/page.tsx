@@ -6,6 +6,8 @@ import Link from "next/link"
 import { ArrowLeft, Check, ChevronRight, ExternalLink } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Reveal } from "@/components/reveal-animation"
+import { RequestDemoModal } from "@/components/request-demo-modal"
+import { Toast } from "@/components/toast"
 import { findProductById } from "@/lib/products"
 import { productCategories } from "@/app/products/product-data"
 
@@ -13,6 +15,8 @@ export default function ProductDetailPage({ params }: { params: { productId: str
   const [product, setProduct] = useState<any>(null)
   const [loading, setLoading] = useState(true)
   const [relatedProducts, setRelatedProducts] = useState<any[]>([])
+  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [showToast, setShowToast] = useState(false)
 
   useEffect(() => {
     // Find the product by ID
@@ -31,6 +35,10 @@ export default function ProductDetailPage({ params }: { params: { productId: str
 
     setLoading(false)
   }, [params.productId])
+
+  const handleDemoSuccess = () => {
+    setShowToast(true)
+  }
 
   if (loading) {
     return (
@@ -128,12 +136,14 @@ export default function ProductDetailPage({ params }: { params: { productId: str
                   <ExternalLink className="ml-2 h-4 w-4" />
                 </a>
 
-                {/* 2. Request Demo button - directs to contact page */}
-                <Link href="/contact">
-                  <Button size="lg" variant={`outline${colorClass.charAt(0).toUpperCase() + colorClass.slice(1)}`}>
-                    Request Demo
-                  </Button>
-                </Link>
+                {/* 2. Request Demo button - opens modal */}
+                <Button
+                  size="lg"
+                  variant={`outline${colorClass.charAt(0).toUpperCase() + colorClass.slice(1)}`}
+                  onClick={() => setIsModalOpen(true)}
+                >
+                  Request Demo
+                </Button>
               </div>
             </div>
           </Reveal>
@@ -203,11 +213,9 @@ export default function ProductDetailPage({ params }: { params: { productId: str
                   <ExternalLink className="ml-2 h-4 w-4" />
                 </a>
 
-                <Link href="/contact">
-                  <Button size="lg" variant="outline">
-                    Contact Sales
-                  </Button>
-                </Link>
+                <Button size="lg" variant="outline" onClick={() => setIsModalOpen(true)}>
+                  Request Demo
+                </Button>
               </div>
             </div>
           </Reveal>
@@ -280,6 +288,22 @@ export default function ProductDetailPage({ params }: { params: { productId: str
           </Button>
         </Link>
       </div>
+
+      {/* Request Demo Modal */}
+      <RequestDemoModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        onSuccess={handleDemoSuccess}
+        preSelectedProduct={product.id}
+      />
+
+      {/* Toast Notification */}
+      <Toast
+        message="Demo request submitted successfully! We'll contact you within 24 hours."
+        type="success"
+        isVisible={showToast}
+        onClose={() => setShowToast(false)}
+      />
     </div>
   )
 }

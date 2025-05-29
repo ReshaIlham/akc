@@ -165,7 +165,9 @@ export function Navbar() {
               )}
             </Button>
           )}
-          <Button variant={isHeroSection && !scrolled ? "white" : "blue"}>Get Started</Button>
+          <Link href="/contact">
+            <Button variant={isHeroSection && !scrolled ? "white" : "blue"}>Get Started</Button>
+          </Link>
         </div>
 
         {/* Mobile Menu Button */}
@@ -215,12 +217,14 @@ export function Navbar() {
                 {link.label}
               </Link>
             ))}
-            <Button
-              className="w-full bg-agile-blue hover:bg-agile-blue/90 text-white dark:bg-agile-blue-dark dark:hover:bg-agile-blue-dark/90 dark:text-white"
-              onClick={() => setIsOpen(false)}
-            >
-              Get Started
-            </Button>
+            <Link href="/contact">
+              <Button
+                className="w-full bg-agile-blue hover:bg-agile-blue/90 text-white dark:bg-agile-blue-dark dark:hover:bg-agile-blue-dark/90 dark:text-white"
+                onClick={() => setIsOpen(false)}
+              >
+                Get Started
+              </Button>
+            </Link>
           </div>
         </div>
       )}

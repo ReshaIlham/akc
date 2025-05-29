@@ -292,7 +292,7 @@ export default function ServicesPage() {
         ctaText="Get Started"
         ctaHref="/contact"
         secondaryCtaText="Learn More"
-        secondaryCtaHref="#services"
+        secondaryCtaHref="/products"
         imageSrc="/project-dashboard-overview.png"
         imageAlt="Project Management Dashboard"
       />

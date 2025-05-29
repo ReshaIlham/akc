@@ -8,15 +8,23 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Reveal } from "@/components/reveal-animation"
 import { HeroEnhanced } from "@/components/hero-enhanced"
+import { RequestDemoModal } from "@/components/request-demo-modal"
+import { Toast } from "@/components/toast"
 import { cn } from "@/lib/utils"
 import { productCategories } from "./product-data"
 
 export default function ProductsPage() {
   // State to track active category tab
   const [activeCategory, setActiveCategory] = useState("application")
+  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [showToast, setShowToast] = useState(false)
 
   // Get current category data
   const currentCategory = productCategories.find((category) => category.id === activeCategory) || productCategories[0]
+
+  const handleDemoSuccess = () => {
+    setShowToast(true)
+  }
 
   return (
     <div>
@@ -29,9 +37,10 @@ export default function ProductsPage() {
         }
         subtitle="Innovative tools, resources, and merchandise to enhance your project management capabilities and drive successful outcomes."
         ctaText="Explore Products"
-        ctaHref="#products"
+        ctaHref="#discover-products"
         secondaryCtaText="Request Demo"
-        secondaryCtaHref="/contact"
+        secondaryCtaHref="#"
+        onSecondaryCtaClick={() => setIsModalOpen(true)}
         imageSrc="/project-dashboard-overview.png"
         imageAlt="Project Management Dashboard"
         variant="red"
@@ -52,7 +61,7 @@ export default function ProductsPage() {
       />
 
       {/* Combined Products Section with Tabs */}
-      <section id="products" className="py-16 md:py-24 relative overflow-hidden">
+      <section id="discover-products" className="py-16 md:py-24 relative overflow-hidden">
         <div className="absolute inset-0 dark:opacity-20 opacity-5">
           <div className="absolute top-0 left-0 w-full h-full bg-grid-pattern-enhanced"></div>
         </div>
@@ -170,7 +179,11 @@ export default function ProductsPage() {
                 Get started with our products today and see the difference they can make in your project outcomes.
               </p>
               <div className="flex flex-col sm:flex-row justify-center gap-4">
-                <Button size="lg" className="bg-white text-agile-blue hover:bg-gray-100">
+                <Button
+                  size="lg"
+                  className="bg-white text-agile-blue hover:bg-gray-100"
+                  onClick={() => setIsModalOpen(true)}
+                >
                   Request a Demo
                 </Button>
                 <Link href="/contact">
@@ -183,6 +196,17 @@ export default function ProductsPage() {
           </Reveal>
         </div>
       </section>
+
+      {/* Request Demo Modal */}
+      <RequestDemoModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} onSuccess={handleDemoSuccess} />
+
+      {/* Toast Notification */}
+      <Toast
+        message="Demo request submitted successfully! We'll contact you within 24 hours."
+        type="success"
+        isVisible={showToast}
+        onClose={() => setShowToast(false)}
+      />
     </div>
   )
 }
