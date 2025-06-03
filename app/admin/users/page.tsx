@@ -1,43 +1,45 @@
 "use client"
 
 import { useState } from "react"
-import { Search, Plus, Edit, Trash2, Mail, Phone } from "lucide-react"
+import { Search, Plus, Edit, Trash2 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { AddUserModal } from "@/components/admin/add-user-modal"
+import { EditUserModal } from "@/components/admin/edit-user-modal"
+import { formatDistanceToNow } from "date-fns"
+
+// Mock user data
+const initialUsers = [
+  {
+    id: 1,
+    name: "John Doe",
+    email: "john.doe@example.com",
+    status: "Active",
+    lastUpdated: new Date(2024, 4, 15),
+  },
+  {
+    id: 2,
+    name: "Sarah Johnson",
+    email: "sarah.johnson@techcorp.com",
+    status: "Active",
+    lastUpdated: new Date(2024, 5, 20),
+  },
+  {
+    id: 3,
+    name: "Michael Chen",
+    email: "michael.chen@innovateco.com",
+    status: "Inactive",
+    lastUpdated: new Date(2024, 4, 10),
+  },
+]
 
 export default function UsersPage() {
+  const [users, setUsers] = useState(initialUsers)
   const [searchTerm, setSearchTerm] = useState("")
-
-  const users = [
-    {
-      id: 1,
-      name: "John Doe",
-      email: "john.doe@example.com",
-      phone: "+1 234 567 8900",
-      role: "Client",
-      status: "Active",
-      joinDate: "2024-01-15",
-    },
-    {
-      id: 2,
-      name: "Sarah Johnson",
-      email: "sarah.johnson@techcorp.com",
-      phone: "+1 234 567 8901",
-      role: "Client",
-      status: "Active",
-      joinDate: "2024-02-20",
-    },
-    {
-      id: 3,
-      name: "Michael Chen",
-      email: "michael.chen@innovateco.com",
-      phone: "+1 234 567 8902",
-      role: "Client",
-      status: "Inactive",
-      joinDate: "2024-01-10",
-    },
-  ]
+  const [isAddModalOpen, setIsAddModalOpen] = useState(false)
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false)
+  const [currentUser, setCurrentUser] = useState(null)
 
   const filteredUsers = users.filter(
     (user) =>
@@ -45,11 +47,34 @@ export default function UsersPage() {
       user.email.toLowerCase().includes(searchTerm.toLowerCase()),
   )
 
+  const handleAddUser = (newUser) => {
+    const id = users.length > 0 ? Math.max(...users.map((user) => user.id)) + 1 : 1
+    setUsers([...users, { ...newUser, id, lastUpdated: new Date() }])
+    setIsAddModalOpen(false)
+  }
+
+  const handleEditUser = (updatedUser) => {
+    setUsers(users.map((user) => (user.id === updatedUser.id ? { ...updatedUser, lastUpdated: new Date() } : user)))
+    setIsEditModalOpen(false)
+    setCurrentUser(null)
+  }
+
+  const handleDeleteUser = (id) => {
+    if (window.confirm("Are you sure you want to delete this user?")) {
+      setUsers(users.filter((user) => user.id !== id))
+    }
+  }
+
+  const openEditModal = (user) => {
+    setCurrentUser(user)
+    setIsEditModalOpen(true)
+  }
+
   return (
     <div className="space-y-6">
       <div className="flex justify-between items-center">
         <h1 className="text-3xl font-bold text-agile-dark dark:text-white">Users Management</h1>
-        <Button variant="blue">
+        <Button variant="blue" onClick={() => setIsAddModalOpen(true)}>
           <Plus className="mr-2 h-4 w-4" />
           Add User
         </Button>
@@ -74,10 +99,9 @@ export default function UsersPage() {
               <thead>
                 <tr className="border-b border-gray-200 dark:border-gray-700">
                   <th className="text-left py-3 px-4 font-medium text-agile-gray dark:text-gray-300">Name</th>
-                  <th className="text-left py-3 px-4 font-medium text-agile-gray dark:text-gray-300">Contact</th>
-                  <th className="text-left py-3 px-4 font-medium text-agile-gray dark:text-gray-300">Role</th>
+                  <th className="text-left py-3 px-4 font-medium text-agile-gray dark:text-gray-300">Email</th>
                   <th className="text-left py-3 px-4 font-medium text-agile-gray dark:text-gray-300">Status</th>
-                  <th className="text-left py-3 px-4 font-medium text-agile-gray dark:text-gray-300">Join Date</th>
+                  <th className="text-left py-3 px-4 font-medium text-agile-gray dark:text-gray-300">Last Updated</th>
                   <th className="text-left py-3 px-4 font-medium text-agile-gray dark:text-gray-300">Actions</th>
                 </tr>
               </thead>
@@ -90,23 +114,7 @@ export default function UsersPage() {
                     <td className="py-3 px-4">
                       <div className="font-medium text-agile-dark dark:text-white">{user.name}</div>
                     </td>
-                    <td className="py-3 px-4">
-                      <div className="space-y-1">
-                        <div className="flex items-center text-sm text-agile-gray dark:text-gray-300">
-                          <Mail className="mr-2 h-3 w-3" />
-                          {user.email}
-                        </div>
-                        <div className="flex items-center text-sm text-agile-gray dark:text-gray-300">
-                          <Phone className="mr-2 h-3 w-3" />
-                          {user.phone}
-                        </div>
-                      </div>
-                    </td>
-                    <td className="py-3 px-4">
-                      <span className="px-2 py-1 text-xs rounded-full bg-agile-blue/10 text-agile-blue dark:bg-agile-blue-dark/10 dark:text-agile-blue-dark">
-                        {user.role}
-                      </span>
-                    </td>
+                    <td className="py-3 px-4 text-agile-gray dark:text-gray-300">{user.email}</td>
                     <td className="py-3 px-4">
                       <span
                         className={`px-2 py-1 text-xs rounded-full ${
@@ -118,13 +126,20 @@ export default function UsersPage() {
                         {user.status}
                       </span>
                     </td>
-                    <td className="py-3 px-4 text-sm text-agile-gray dark:text-gray-300">{user.joinDate}</td>
+                    <td className="py-3 px-4 text-sm text-agile-gray dark:text-gray-300">
+                      {formatDistanceToNow(user.lastUpdated, { addSuffix: true })}
+                    </td>
                     <td className="py-3 px-4">
                       <div className="flex space-x-2">
-                        <Button variant="ghost" size="sm">
+                        <Button variant="ghost" size="sm" onClick={() => openEditModal(user)}>
                           <Edit className="h-4 w-4" />
                         </Button>
-                        <Button variant="ghost" size="sm" className="text-agile-red dark:text-agile-red-dark">
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          className="text-agile-red dark:text-agile-red-dark"
+                          onClick={() => handleDeleteUser(user.id)}
+                        >
                           <Trash2 className="h-4 w-4" />
                         </Button>
                       </div>
@@ -136,6 +151,20 @@ export default function UsersPage() {
           </div>
         </CardContent>
       </Card>
+
+      <AddUserModal isOpen={isAddModalOpen} onClose={() => setIsAddModalOpen(false)} onAddUser={handleAddUser} />
+
+      {currentUser && (
+        <EditUserModal
+          isOpen={isEditModalOpen}
+          onClose={() => {
+            setIsEditModalOpen(false)
+            setCurrentUser(null)
+          }}
+          onEditUser={handleEditUser}
+          user={currentUser}
+        />
+      )}
     </div>
   )
 }
