@@ -3,7 +3,7 @@
 import { useState } from "react"
 import Link from "next/link"
 import { useRouter, usePathname } from "next/navigation"
-import { Menu, X, LogOut, LayoutDashboard, Users, Settings, FileText } from "lucide-react"
+import { Menu, X, LogOut } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { ThemeToggle } from "@/components/theme-toggle"
 import { logout, getCurrentUser } from "@/lib/auth"
@@ -21,10 +21,12 @@ export function AdminNavbar() {
   }
 
   const navLinks = [
-    { href: "/admin", label: "Dashboard", icon: <LayoutDashboard size={16} className="mr-2" /> },
-    { href: "/admin/users", label: "Users", icon: <Users size={16} className="mr-2" /> },
-    { href: "/admin/content", label: "Content", icon: <FileText size={16} className="mr-2" /> },
-    { href: "/admin/settings", label: "Settings", icon: <Settings size={16} className="mr-2" /> },
+    { href: "/admin", label: "Dashboard" },
+    { href: "/admin/users", label: "Users" },
+    { href: "/admin/clients", label: "Clients" },
+    { href: "/admin/testimonials", label: "Testimonials" },
+    { href: "/admin/content", label: "Content" },
+    { href: "/admin/settings", label: "Settings" },
   ]
 
   return (
@@ -46,11 +48,10 @@ export function AdminNavbar() {
               key={link.href}
               href={link.href}
               className={cn(
-                "text-sm font-medium transition-all duration-300 relative group text-agile-dark dark:text-white hover:text-agile-blue dark:hover:text-agile-blue-dark flex items-center",
+                "text-sm font-medium transition-all duration-300 relative group text-agile-dark dark:text-white hover:text-agile-blue dark:hover:text-agile-blue-dark",
                 pathname === link.href ? "text-agile-blue dark:text-agile-blue-dark" : "",
               )}
             >
-              {link.icon}
               <span>{link.label}</span>
               <span
                 className={cn(
@@ -111,14 +112,13 @@ export function AdminNavbar() {
                 key={link.href}
                 href={link.href}
                 className={cn(
-                  "text-sm font-medium transition-colors flex items-center",
+                  "text-sm font-medium transition-colors",
                   pathname === link.href
                     ? "text-agile-blue dark:text-agile-blue-dark"
                     : "text-agile-gray dark:text-gray-300 hover:text-agile-blue dark:hover:text-agile-blue-dark",
                 )}
                 onClick={() => setIsOpen(false)}
               >
-                {link.icon}
                 <span>{link.label}</span>
               </Link>
             ))}

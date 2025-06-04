@@ -3,7 +3,7 @@
 import type React from "react"
 
 import { useState, useRef, useCallback } from "react"
-import { Upload, X, ImageIcon } from "lucide-react"
+import { Upload, ImageIcon, Trash2 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 interface ImageUploadProps {
@@ -72,14 +72,14 @@ export function ImageUpload({ value, onChange, onError, className = "" }: ImageU
         setIsUploading(true)
         setUploadProgress(0)
 
-        // Create preview immediately
+        // Create preview immediately using a local object URL
         const objectUrl = URL.createObjectURL(file)
         setPreviewUrl(objectUrl)
 
         const uploadedUrl = await simulateUpload(file)
 
-        // Update with final URL
-        setPreviewUrl(uploadedUrl)
+        // In a real implementation, we would use the server URL
+        // For now, keep using the object URL for preview
         onChange(uploadedUrl)
       } catch (error) {
         const errorMessage = error instanceof Error ? error.message : "Upload failed"
@@ -135,7 +135,10 @@ export function ImageUpload({ value, onChange, onError, className = "" }: ImageU
   }
 
   const openFileDialog = () => {
-    fileInputRef.current?.click()
+    if (fileInputRef.current) {
+      fileInputRef.current.value = "" // Reset input value to allow selecting the same file
+      fileInputRef.current.click()
+    }
   }
 
   return (
@@ -198,27 +201,28 @@ export function ImageUpload({ value, onChange, onError, className = "" }: ImageU
                 src={previewUrl || "/placeholder.svg"}
                 alt="Preview"
                 className="w-full h-48 object-cover"
-                onError={() => {
-                  setPreviewUrl("")
-                  onError?.("Failed to load image preview")
+                onError={(e) => {
+                  // If the server URL fails, fall back to a placeholder
+                  const target = e.target as HTMLImageElement
+                  target.onerror = null // Prevent infinite error loop
+                  target.src = "/placeholder.svg?height=192&width=384"
                 }}
               />
             </div>
-            <Button
-              type="button"
-              variant="ghost"
-              size="sm"
-              onClick={handleRemove}
-              className="absolute top-2 right-2 bg-white/90 dark:bg-gray-800/90 hover:bg-white dark:hover:bg-gray-800 shadow-sm"
-            >
-              <X className="w-4 h-4" />
-            </Button>
+            {/* Removed the top-right corner buttons */}
           </div>
 
           <div className="flex items-center justify-between">
             <p className="text-sm text-agile-gray dark:text-gray-400">Image uploaded successfully</p>
-            <Button type="button" variant="outline" size="sm" onClick={openFileDialog}>
-              Change Image
+            <Button
+              type="button"
+              variant="outline"
+              size="sm"
+              onClick={handleRemove}
+              className="flex items-center gap-2 text-red-600 hover:text-red-700 hover:bg-red-50 dark:hover:bg-red-950/20 border-red-200 dark:border-red-800"
+            >
+              <Trash2 className="w-4 h-4" />
+              Remove Image
             </Button>
           </div>
         </div>
