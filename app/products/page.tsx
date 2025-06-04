@@ -26,6 +26,57 @@ export default function ProductsPage() {
     setShowToast(true)
   }
 
+  // Function to get appropriate image URL with better fallbacks
+  const getImageUrl = (imageSrc: string, productId: string, categoryId: string) => {
+    // If image is already a full URL (Unsplash), return it
+    if (imageSrc.startsWith("http")) {
+      return imageSrc
+    }
+
+    // If it's a placeholder or doesn't exist, provide category-specific Unsplash images
+    const fallbackImages = {
+      application: {
+        tumbuh:
+          "https://images.unsplash.com/photo-1551434678-e076c223a692?w=400&h=300&fit=crop&crop=center&auto=format&q=80",
+        pantau:
+          "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=300&fit=crop&crop=center&auto=format&q=80",
+        latih:
+          "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=400&h=300&fit=crop&crop=center&auto=format&q=80",
+      },
+      "training-kits": {
+        "agile-fundamentals-kit":
+          "https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&h=300&fit=crop&crop=center&auto=format&q=80",
+        "scrum-master-toolkit":
+          "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=400&h=300&fit=crop&crop=center&auto=format&q=80",
+        "agile-leadership-program":
+          "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=300&fit=crop&crop=center&auto=format&q=80",
+      },
+      templates: {
+        "agile-project-documentation":
+          "https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=400&h=300&fit=crop&crop=center&auto=format&q=80",
+        "project-management-toolkit":
+          "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=400&h=300&fit=crop&crop=center&auto=format&q=80",
+        "agile-metrics-dashboard":
+          "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=300&fit=crop&crop=center&auto=format&q=80",
+      },
+      merch: {
+        "agile-tshirts":
+          "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400&h=300&fit=crop&crop=center&auto=format&q=80",
+        "project-management-cards":
+          "https://images.unsplash.com/photo-1606092195730-5d7b9af1efc5?w=400&h=300&fit=crop&crop=center&auto=format&q=80",
+        "project-management-monopoly":
+          "https://images.unsplash.com/photo-1606092195730-5d7b9af1efc5?w=400&h=300&fit=crop&crop=center&auto=format&q=80",
+      },
+    }
+
+    // Return specific fallback or try the original image
+    return (
+      fallbackImages[categoryId]?.[productId] ||
+      imageSrc ||
+      "https://images.unsplash.com/photo-1551434678-e076c223a692?w=400&h=300&fit=crop&crop=center&auto=format&q=80"
+    )
+  }
+
   return (
     <div>
       {/* Hero Section */}
@@ -118,20 +169,20 @@ export default function ProductsPage() {
                 <Card className="card-hover h-full overflow-hidden border-none shadow-lg dark:bg-gray-800">
                   <div className="relative h-48 overflow-hidden">
                     <Image
-                      src={product.image || "/placeholder.svg"}
+                      src={getImageUrl(product.image, product.id, currentCategory.id) || "/placeholder.svg"}
                       fill
                       alt={product.title}
                       className="object-cover transition-transform duration-500 hover:scale-105"
                     />
+                  </div>
+                  <CardContent className="p-6">
                     {product.badge && (
                       <div
-                        className={`absolute top-3 right-3 px-3 py-1 text-xs font-bold rounded-full bg-agile-${currentCategory.color} text-white dark:bg-agile-${currentCategory.color}-dark`}
+                        className={`inline-block px-3 py-1 mb-3 text-xs font-medium bg-agile-${currentCategory.color}/10 text-agile-${currentCategory.color} dark:bg-agile-${currentCategory.color}-dark/10 dark:text-agile-${currentCategory.color}-dark rounded-full`}
                       >
                         {product.badge}
                       </div>
                     )}
-                  </div>
-                  <CardContent className="p-6">
                     <h3 className="text-xl font-bold mb-2">{product.title}</h3>
                     <p className="text-agile-gray dark:text-gray-300 mb-4">{product.description}</p>
 
@@ -151,9 +202,15 @@ export default function ProductsPage() {
                     )}
 
                     <div className="flex items-center justify-between mt-4">
-                      {product.price && (
-                        <div className="font-bold text-lg text-agile-dark dark:text-white">{product.price}</div>
-                      )}
+                      <div className="flex flex-col">
+                        <div className="text-sm text-agile-gray dark:text-gray-400 mb-1">Start from</div>
+                        <div className="flex items-center gap-2">
+                          <div className="font-bold text-lg text-agile-dark dark:text-white">{product.price}</div>
+                          {product.originalPrice && (
+                            <div className="text-sm text-gray-500 line-through">{product.originalPrice}</div>
+                          )}
+                        </div>
+                      </div>
                       <Link href={`/products/${product.id}`}>
                         <Button variant={currentCategory.color as any} size="sm" className="group">
                           View Details

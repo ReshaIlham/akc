@@ -233,6 +233,171 @@ export const projects: Project[] = [
     outcome:
       "All 15 locations were opened on schedule and under budget, with consistent quality and brand experience. The approach established has become the standard for future expansion projects.",
   },
+  {
+    id: "digital-transformation-banking",
+    title: "Digital Transformation Initiative",
+    category: "Banking",
+    shortDescription:
+      "Led a comprehensive digital transformation for a regional bank, modernizing legacy systems and improving customer experience by 60%.",
+    description:
+      "This digital transformation project involved modernizing the bank's core systems, implementing new digital channels, and training staff on new technologies to enhance customer service and operational efficiency.",
+    image: "/sleek-glass-tower.png",
+    timeframe: "September 2022 - March 2023 (7 months)",
+    client: "Regional Bank Corp.",
+    industry: "Banking",
+    results: [
+      "60% improvement in customer satisfaction",
+      "45% reduction in processing time",
+      "30% increase in digital adoption",
+      "25% cost savings in operations",
+    ],
+    services: ["Digital Strategy", "System Integration", "Change Management", "Staff Training"],
+    testimonial: {
+      quote:
+        "The digital transformation has revolutionized our operations. We're now able to serve customers faster and more efficiently than ever before.",
+      author: "Maria Santos",
+      position: "Chief Digital Officer",
+      company: "Regional Bank Corp.",
+    },
+    challenge:
+      "The bank was struggling with outdated legacy systems, slow processing times, and declining customer satisfaction due to poor digital experience.",
+    solution:
+      "We implemented a phased digital transformation approach, modernizing core systems, introducing new digital channels, and providing comprehensive staff training.",
+    outcome:
+      "The bank successfully modernized its operations, significantly improved customer experience, and positioned itself as a leader in digital banking services.",
+  },
+  {
+    id: "supply-chain-optimization",
+    title: "Supply Chain Optimization",
+    category: "Logistics",
+    shortDescription:
+      "Optimized supply chain operations for a global logistics company, reducing costs by 35% and improving delivery times by 40%.",
+    description:
+      "This supply chain optimization project focused on streamlining operations, implementing new tracking systems, and optimizing route planning to improve efficiency and reduce costs.",
+    image: "/bustling-factory-floor.png",
+    timeframe: "June 2023 - December 2023 (7 months)",
+    client: "Global Logistics Solutions",
+    industry: "Logistics",
+    results: [
+      "35% reduction in operational costs",
+      "40% improvement in delivery times",
+      "50% increase in tracking accuracy",
+      "20% reduction in carbon footprint",
+    ],
+    services: ["Process Optimization", "System Implementation", "Route Planning", "Performance Analytics"],
+    testimonial: {
+      quote:
+        "The supply chain optimization has transformed our business. We're now more efficient, cost-effective, and environmentally responsible.",
+      author: "James Wilson",
+      position: "Operations Director",
+      company: "Global Logistics Solutions",
+    },
+    challenge:
+      "The company faced high operational costs, delayed deliveries, and poor visibility into supply chain operations, affecting customer satisfaction.",
+    solution:
+      "We redesigned the supply chain processes, implemented advanced tracking systems, optimized routing algorithms, and established performance monitoring dashboards.",
+    outcome:
+      "The company achieved significant cost savings, improved delivery performance, and gained real-time visibility into their entire supply chain network.",
+  },
+  {
+    id: "cloud-migration-enterprise",
+    title: "Enterprise Cloud Migration",
+    category: "Technology",
+    shortDescription:
+      "Successfully migrated enterprise infrastructure to cloud, reducing IT costs by 40% and improving system reliability by 99.9%.",
+    description:
+      "This cloud migration project involved moving critical business applications and data to a secure cloud environment while ensuring minimal downtime and maximum security.",
+    image: "/vibrant-startup-collaboration.png",
+    timeframe: "January 2023 - August 2023 (8 months)",
+    client: "Enterprise Tech Corp.",
+    industry: "Technology",
+    results: [
+      "40% reduction in IT infrastructure costs",
+      "99.9% system uptime achieved",
+      "50% faster deployment cycles",
+      "Enhanced security and compliance",
+    ],
+    services: ["Cloud Strategy", "Migration Planning", "Security Implementation", "Staff Training"],
+    testimonial: {
+      quote:
+        "The cloud migration has been a game-changer for our business. We now have better performance, lower costs, and improved scalability.",
+      author: "Lisa Chen",
+      position: "CTO",
+      company: "Enterprise Tech Corp.",
+    },
+    challenge:
+      "The company was struggling with high IT infrastructure costs, frequent system downtime, and difficulty scaling their on-premise systems.",
+    solution:
+      "We developed a comprehensive cloud migration strategy, implemented security best practices, and provided extensive training to ensure smooth transition.",
+    outcome:
+      "The company successfully migrated to the cloud, achieving significant cost savings, improved reliability, and enhanced scalability for future growth.",
+  },
+  {
+    id: "quality-management-pharma",
+    title: "Quality Management System",
+    category: "Pharmaceutical",
+    shortDescription:
+      "Implemented a comprehensive quality management system for a pharmaceutical company, achieving 100% regulatory compliance.",
+    description:
+      "This quality management project focused on establishing robust quality processes, implementing compliance frameworks, and ensuring adherence to pharmaceutical industry standards.",
+    image: "/collaborative-healthcare-discussion.png",
+    timeframe: "April 2023 - November 2023 (8 months)",
+    client: "PharmaCorp Industries",
+    industry: "Pharmaceutical",
+    results: [
+      "100% regulatory compliance achieved",
+      "60% reduction in quality incidents",
+      "30% improvement in audit scores",
+      "25% faster product approval times",
+    ],
+    services: ["Quality System Design", "Compliance Framework", "Process Documentation", "Audit Preparation"],
+    testimonial: {
+      quote:
+        "The quality management system has elevated our standards and given us confidence in our regulatory compliance.",
+      author: "Dr. Robert Kim",
+      position: "Quality Director",
+      company: "PharmaCorp Industries",
+    },
+    challenge:
+      "The pharmaceutical company faced regulatory compliance issues, quality control problems, and lengthy product approval processes.",
+    solution:
+      "We designed and implemented a comprehensive quality management system with robust documentation, training programs, and continuous monitoring processes.",
+    outcome:
+      "The company achieved full regulatory compliance, significantly improved quality metrics, and streamlined their product approval processes.",
+  },
+  {
+    id: "customer-experience-retail",
+    title: "Customer Experience Enhancement",
+    category: "Retail",
+    shortDescription:
+      "Enhanced customer experience across multiple touchpoints, increasing customer satisfaction by 45% and sales by 30%.",
+    description:
+      "This customer experience project involved redesigning customer journeys, implementing new technologies, and training staff to deliver exceptional service across all channels.",
+    image: "/bustling-market-day.png",
+    timeframe: "February 2023 - September 2023 (8 months)",
+    client: "Premium Retail Chain",
+    industry: "Retail",
+    results: [
+      "45% increase in customer satisfaction",
+      "30% growth in sales revenue",
+      "50% improvement in customer retention",
+      "40% increase in online engagement",
+    ],
+    services: ["Customer Journey Mapping", "Technology Implementation", "Staff Training", "Performance Analytics"],
+    testimonial: {
+      quote:
+        "The customer experience transformation has exceeded our expectations. Our customers are happier, and our sales have grown significantly.",
+      author: "Amanda Rodriguez",
+      position: "Customer Experience Director",
+      company: "Premium Retail Chain",
+    },
+    challenge:
+      "The retail chain was experiencing declining customer satisfaction, reduced sales, and poor integration between online and offline channels.",
+    solution:
+      "We mapped customer journeys, implemented omnichannel solutions, redesigned store layouts, and provided comprehensive staff training on customer service excellence.",
+    outcome:
+      "The retail chain successfully transformed their customer experience, resulting in higher satisfaction scores, increased sales, and improved brand loyalty.",
+  },
 ]
 
 // This function will be used to find a project by its ID

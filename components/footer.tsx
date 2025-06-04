@@ -1,5 +1,6 @@
 import Link from "next/link"
 import { Facebook, Twitter, Instagram, Linkedin, Mail, Phone, MapPin } from "lucide-react"
+import Image from "next/image"
 
 export function Footer() {
   return (
@@ -7,9 +8,15 @@ export function Footer() {
       <div className="container py-12 md:py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           <div>
-            <h3 className="text-xl font-bold mb-4">
-              Agile<span className="text-agile-blue-dark">nesia</span>
-            </h3>
+            <div className="mb-4">
+              <Image
+                src="/agilenesia-logo.png"
+                alt="Agilenesia"
+                width={180}
+                height={50}
+                className="h-10 w-auto brightness-0 invert"
+              />
+            </div>
             <p className="text-gray-300 mb-4">
               Empowering organizations through effective project management solutions, coaching, and training.
             </p>

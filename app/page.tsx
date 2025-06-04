@@ -48,8 +48,8 @@ export default function Home() {
         ctaHref="#what-we-offer"
         secondaryCtaText="Learn More"
         secondaryCtaHref="/about"
-        imageSrc="/project-dashboard-overview.png"
-        imageAlt="Project Management Dashboard"
+        imageSrc="/coaching-session.png"
+        imageAlt="Project Management Coaching Session"
       />
 
       {/* 2. Value Proposition Section - Added ID for anchor link */}
@@ -247,8 +247,8 @@ export default function Home() {
               <div className="relative">
                 <div className="absolute -inset-1 bg-agile-green/30 dark:bg-agile-green-dark/30 blur-lg"></div>
                 <img
-                  src="/project-overview-dashboard.png"
-                  alt="Our Proven Methodology"
+                  src="/training-session.png"
+                  alt="Project Management Coaching"
                   className="w-full h-auto rounded-lg relative z-10"
                 />
               </div>

@@ -1,3 +1,6 @@
+"use client"
+
+import { useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { ArrowRight, ChevronRight } from "lucide-react"
@@ -11,7 +14,18 @@ export default function ProjectsPage() {
   // Featured projects are the first 3 projects
   const featuredProjects = projects.slice(0, 3)
   // More projects are the rest
-  const moreProjects = projects.slice(3)
+  const allMoreProjects = projects.slice(3)
+
+  // State for load more functionality
+  const [visibleProjects, setVisibleProjects] = useState(3)
+  const projectsPerLoad = 3
+
+  const moreProjects = allMoreProjects.slice(0, visibleProjects)
+  const hasMoreProjects = visibleProjects < allMoreProjects.length
+
+  const loadMoreProjects = () => {
+    setVisibleProjects((prev) => Math.min(prev + projectsPerLoad, allMoreProjects.length))
+  }
 
   return (
     <div>
@@ -156,6 +170,12 @@ export default function ProjectsPage() {
                     return "green"
                   case "Retail":
                     return "red"
+                  case "Banking":
+                    return "blue"
+                  case "Logistics":
+                    return "green"
+                  case "Pharmaceutical":
+                    return "red"
                   default:
                     return "blue"
                 }
@@ -198,6 +218,23 @@ export default function ProjectsPage() {
               )
             })}
           </div>
+
+          {/* Load More Button */}
+          {hasMoreProjects && (
+            <div className="text-center mt-12">
+              <Reveal>
+                <Button
+                  onClick={loadMoreProjects}
+                  variant="outline"
+                  size="lg"
+                  className="bg-white dark:bg-gray-800 border-agile-green text-agile-green hover:bg-agile-green hover:text-white dark:border-agile-green-dark dark:text-agile-green-dark dark:hover:bg-agile-green-dark dark:hover:text-white transition-all duration-300"
+                >
+                  Load More Projects
+                  <ChevronRight className="ml-2 h-4 w-4" />
+                </Button>
+              </Reveal>
+            </div>
+          )}
         </div>
       </section>
 

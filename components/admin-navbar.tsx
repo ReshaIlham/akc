@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button"
 import { ThemeToggle } from "@/components/theme-toggle"
 import { logout, getCurrentUser } from "@/lib/auth"
 import { cn } from "@/lib/utils"
+import Image from "next/image"
 
 export function AdminNavbar() {
   const [isOpen, setIsOpen] = useState(false)
@@ -24,18 +25,23 @@ export function AdminNavbar() {
     { href: "/admin", label: "Dashboard" },
     { href: "/admin/users", label: "Users" },
     { href: "/admin/clients", label: "Clients" },
+    { href: "/admin/projects", label: "Projects" },
     { href: "/admin/testimonials", label: "Testimonials" },
     { href: "/admin/content", label: "Content" },
-    { href: "/admin/settings", label: "Settings" },
   ]
 
   return (
     <header className="bg-white dark:bg-agile-dark shadow-md border-b border-gray-200 dark:border-gray-700 sticky top-0 z-50">
       <div className="container flex items-center justify-between py-4">
-        <Link href="/admin" className="flex items-center space-x-2">
-          <span className="text-2xl font-extrabold text-agile-dark dark:text-white">
-            Agile<span className="text-agile-blue dark:text-agile-blue-dark">nesia</span>
-          </span>
+        <Link href="/admin" className="flex items-center space-x-3">
+          <Image
+            src="/agilenesia-logo.png"
+            alt="Agilenesia"
+            width={180}
+            height={50}
+            className="h-10 w-auto dark:brightness-0 dark:invert transition-all duration-300"
+            priority
+          />
           <span className="text-sm bg-agile-blue/10 text-agile-blue dark:bg-agile-blue-dark/10 dark:text-agile-blue-dark px-2 py-1 rounded-full">
             Admin
           </span>

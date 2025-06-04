@@ -63,7 +63,7 @@ export default function ContactPage() {
         ctaHref="#contact-form"
         secondaryCtaText="View Location"
         secondaryCtaHref="#visit-office"
-        imageSrc="/contact-team.png"
+        imageSrc="https://images.unsplash.com/photo-1556761175-b413da4baf72?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600&q=80"
         imageAlt="Contact Team"
         variant="cyan"
         reversed={true}

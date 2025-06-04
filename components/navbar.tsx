@@ -7,6 +7,7 @@ import { Menu, X, Sun, Moon } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 import { useTheme } from "next-themes"
+import Image from "next/image"
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
@@ -15,21 +16,16 @@ export function Navbar() {
   const [mounted, setMounted] = useState(false)
   const pathname = usePathname()
 
-  // Tambahkan kondisi untuk mendeteksi halaman project detail
-  // Cari bagian yang mendeklarasikan variabel pathname dan tambahkan:
-
   const isProductDetailPage = pathname.startsWith("/products/") && pathname !== "/products"
   const isProjectDetailPage = pathname.startsWith("/projects/") && pathname !== "/projects"
   const { theme, setTheme } = useTheme()
 
-  // After mounting, we can safely show the theme toggle
   useEffect(() => {
     setMounted(true)
   }, [])
 
   useEffect(() => {
     const handleScroll = () => {
-      // Check if scrolled past hero section (approximately 100px)
       const isInHeroSection = window.scrollY < 100
       setIsHeroSection(isInHeroSection)
 
@@ -41,7 +37,6 @@ export function Navbar() {
     }
 
     window.addEventListener("scroll", handleScroll)
-    // Initial check
     handleScroll()
 
     return () => window.removeEventListener("scroll", handleScroll)
@@ -56,70 +51,64 @@ export function Navbar() {
     { href: "/contact", label: "Contact" },
   ]
 
-  // Determine text color based on scroll position and hero section
-  // Ubah penentuan textColorClass untuk menangani halaman project detail
-  // Cari bagian yang menentukan textColorClass dan ganti dengan:
-
   const textColorClass = scrolled
     ? "text-agile-dark dark:text-white"
     : isProductDetailPage || isProjectDetailPage
-      ? "text-agile-dark dark:text-white" // Selalu gunakan warna kontras di halaman detail
+      ? "text-agile-dark dark:text-white"
       : isHeroSection
         ? "text-white"
         : "text-agile-dark dark:text-white"
 
-  // Ubah juga logoColorClass dengan cara yang sama
-  const logoColorClass = scrolled
-    ? "text-agile-dark dark:text-white"
-    : isProductDetailPage || isProjectDetailPage
-      ? "text-agile-dark dark:text-white" // Selalu gunakan warna kontras di halaman detail
-      : isHeroSection
-        ? "text-white"
-        : "text-agile-dark dark:text-white"
-
-  // Ubah juga hoverColorClass
   const hoverColorClass = scrolled
     ? "hover:text-agile-blue dark:hover:text-agile-blue-dark"
     : isProductDetailPage || isProjectDetailPage
-      ? "hover:text-agile-blue dark:hover:text-agile-blue-dark" // Hover color untuk halaman detail
+      ? "hover:text-agile-blue dark:hover:text-agile-blue-dark"
       : isHeroSection
         ? "hover:text-agile-blue-dark"
         : "hover:text-agile-blue dark:hover:text-agile-blue-dark"
 
-  // Ubah juga activeLinkClass
   const activeLinkClass = scrolled
     ? "text-agile-blue dark:text-agile-blue-dark"
     : isProductDetailPage || isProjectDetailPage
-      ? "text-agile-blue dark:text-agile-blue-dark" // Active link color untuk halaman detail
+      ? "text-agile-blue dark:text-agile-blue-dark"
       : isHeroSection
         ? "text-agile-blue-dark"
         : "text-agile-blue dark:text-agile-blue-dark"
 
-  // Function to toggle theme
+  // Determine logo filter based on scroll position and hero section
+  const logoFilterClass = scrolled
+    ? ""
+    : isProductDetailPage || isProjectDetailPage
+      ? ""
+      : isHeroSection
+        ? "brightness-0 invert"
+        : ""
+
   const toggleTheme = () => {
     setTheme(theme === "dark" ? "light" : "dark")
   }
 
   return (
     <header
-      // Tambahkan background semi-transparan untuk navbar di halaman project detail
-      // Cari bagian className pada header dan tambahkan kondisi untuk isProjectDetailPage
-      // Ubah bagian className pada header menjadi:
-
       className={cn(
         "fixed top-0 w-full z-50 transition-all duration-300",
         scrolled
           ? "bg-white/90 dark:bg-agile-dark/90 backdrop-blur-md shadow-md py-3"
           : isProductDetailPage || isProjectDetailPage
-            ? "bg-white/70 dark:bg-agile-dark/70 backdrop-blur-sm py-5" // Background semi-transparan untuk halaman detail
+            ? "bg-white/70 dark:bg-agile-dark/70 backdrop-blur-sm py-5"
             : "bg-transparent py-5",
       )}
     >
       <div className="container flex items-center justify-between">
         <Link href="/" className="flex items-center space-x-2">
-          <span className={cn("text-2xl font-extrabold", logoColorClass)}>
-            Agile<span className="text-agile-blue dark:text-agile-blue-dark">nesia</span>
-          </span>
+          <Image
+            src="/agilenesia-logo.png"
+            alt="Agilenesia"
+            width={180}
+            height={50}
+            className={cn("h-10 w-auto transition-all duration-300", logoFilterClass)}
+            priority
+          />
         </Link>
 
         {/* Desktop Navigation */}
@@ -145,7 +134,6 @@ export function Navbar() {
         </nav>
 
         <div className="hidden md:flex items-center space-x-4">
-          {/* Theme toggle button */}
           {mounted && (
             <Button
               onClick={toggleTheme}
@@ -172,7 +160,6 @@ export function Navbar() {
 
         {/* Mobile Menu Button */}
         <div className="md:hidden flex items-center space-x-4">
-          {/* Mobile theme toggle */}
           {mounted && (
             <Button
               onClick={toggleTheme}
