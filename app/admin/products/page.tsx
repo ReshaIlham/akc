@@ -505,7 +505,7 @@ export default function ProductsPage() {
           onClose={() => setDeletingProduct(null)}
           onConfirm={() => handleDeleteProduct(deletingProduct)}
           title="Delete Product"
-          description={`Are you sure you want to delete "${deletingProduct.title}"? This product will be permanently removed from your catalog and cannot be recovered. This action will also remove it from all related orders and analytics.`}
+          description={`Are you sure you want to delete ${deletingProduct.title}? This action cannot be undone and will remove the product from your website.`}
           confirmText="Delete Product"
           cancelText="Cancel"
         />
