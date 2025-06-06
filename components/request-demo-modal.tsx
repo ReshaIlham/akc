@@ -151,7 +151,7 @@ export function RequestDemoModal({ isOpen, onClose, onSuccess, preSelectedProduc
               value={formData.product}
               onChange={handleChange}
               required
-              className="w-full px-3 py-2 border border-agile-gray/30 rounded-md shadow-sm focus:outline-none focus:ring-agile-blue focus:border-agile-blue dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:focus:ring-agile-blue-dark dark:focus:border-agile-blue-dark"
+              className="text-sm w-full px-3 py-2 border border-agile-gray/30 rounded-md shadow-sm focus:outline-none focus:ring-agile-blue focus:border-agile-blue dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:focus:ring-agile-blue-dark dark:focus:border-agile-blue-dark"
             >
               {products.map((product) => (
                 <option key={product.value} value={product.value}>

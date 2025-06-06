@@ -26,6 +26,8 @@ export function AdminNavbar() {
     { href: "/admin/users", label: "Users" },
     { href: "/admin/clients", label: "Clients" },
     { href: "/admin/projects", label: "Projects" },
+    { href: "/admin/products", label: "Products" },
+    { href: "/admin/demo-requests", label: "Demo Requests" },
     { href: "/admin/testimonials", label: "Testimonials" },
     { href: "/admin/content", label: "Content" },
   ]
