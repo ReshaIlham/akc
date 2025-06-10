@@ -2,7 +2,7 @@
 
 import { useEffect } from "react"
 import Link from "next/link"
-import { ArrowRight, Users, Briefcase, Award } from "lucide-react"
+import { ArrowRight, Users, Briefcase, BookOpen, Globe } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Reveal } from "@/components/reveal-animation"
@@ -67,27 +67,35 @@ export default function Home() {
             </p>
           </Reveal>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
               {
                 icon: <Users size={48} />,
-                title: "Expert Coaching",
+                title: "Coaching and Consulting",
                 description:
-                  "One-on-one coaching for project managers to enhance their skills and overcome specific challenges.",
+                  "Expert guidance to help organizations and individuals improve their project management capabilities through personalized coaching and strategic consulting services.",
                 color: "blue",
               },
               {
-                icon: <Briefcase size={48} />,
-                title: "Strategic Consulting",
+                icon: <BookOpen size={48} />,
+                title: "Education and Training",
                 description:
-                  "Expert consulting to help organizations improve their project management practices and processes.",
+                  "Comprehensive training programs designed to develop project management skills at all levels of your organization, from foundational concepts to advanced methodologies.",
+                color: "green",
+              },
+              {
+                icon: <Briefcase size={48} />,
+                title: "Project Management Solutions",
+                description:
+                  "End-to-end solutions for establishing, improving, and recovering projects and project management functions within your organization.",
                 color: "red",
               },
               {
-                icon: <Award size={48} />,
-                title: "Comprehensive Training",
-                description: "Training programs to develop project management skills across your organization.",
-                color: "green",
+                icon: <Globe size={48} />,
+                title: "Digital Transformation",
+                description:
+                  "Comprehensive digital solutions to help organizations leverage technology for improved project delivery, collaboration, and business outcomes.",
+                color: "blue",
               },
             ].map((service, index) => (
               <Reveal key={index} delay={index * 100} direction="up">
@@ -103,8 +111,8 @@ export default function Home() {
                     >
                       {service.title}
                     </h3>
-                    <p className="text-agile-gray dark:text-gray-300">{service.description}</p>
-                    <div className="mt-4">
+                    <p className="text-agile-gray dark:text-gray-300 mb-4">{service.description}</p>
+                    <div className="mt-auto">
                       <Link
                         href="/services"
                         className={`text-agile-${service.color} dark:text-agile-${service.color}-dark font-medium inline-flex items-center group`}

@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { Facebook, Twitter, Instagram, Linkedin, Mail, Phone, MapPin } from "lucide-react"
+import { Mail, Phone, MapPin } from "lucide-react" // Removed social media icons
 import Image from "next/image"
 
 export function Footer() {
@@ -20,24 +20,7 @@ export function Footer() {
             <p className="text-gray-300 mb-4">
               Empowering organizations through effective project management solutions, coaching, and training.
             </p>
-            <div className="flex space-x-4">
-              <Link href="#" className="text-gray-300 hover:text-agile-red-dark transition-colors">
-                <Facebook size={20} />
-                <span className="sr-only">Facebook</span>
-              </Link>
-              <Link href="#" className="text-gray-300 hover:text-agile-green-dark transition-colors">
-                <Twitter size={20} />
-                <span className="sr-only">Twitter</span>
-              </Link>
-              <Link href="#" className="text-gray-300 hover:text-agile-blue-dark transition-colors">
-                <Instagram size={20} />
-                <span className="sr-only">Instagram</span>
-              </Link>
-              <Link href="#" className="text-gray-300 hover:text-agile-red-dark transition-colors">
-                <Linkedin size={20} />
-                <span className="sr-only">LinkedIn</span>
-              </Link>
-            </div>
+            {/* Removed social media icons section */}
           </div>
 
           <div>
@@ -77,26 +60,26 @@ export function Footer() {
           </div>
 
           <div>
-            <h3 className="text-lg font-semibold mb-4">Services</h3>
+            <h3 className="text-lg font-semibold mb-4">Our Channel</h3> {/* Changed heading to "Our Channel" */}
             <ul className="space-y-2">
               <li>
-                <Link href="/services" className="text-gray-300 hover:text-white transition-colors">
-                  Project Management Coaching
+                <Link
+                  href="https://agilenesia.id/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-300 hover:text-white transition-colors"
+                >
+                  Agilenesia.id
                 </Link>
               </li>
               <li>
-                <Link href="/services" className="text-gray-300 hover:text-white transition-colors">
-                  Consulting Services
-                </Link>
-              </li>
-              <li>
-                <Link href="/services" className="text-gray-300 hover:text-white transition-colors">
-                  Education & Training
-                </Link>
-              </li>
-              <li>
-                <Link href="/services" className="text-gray-300 hover:text-white transition-colors">
-                  Project Management Solutions
+                <Link
+                  href="https://www.youtube.com/@agilenesiatv2011"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-300 hover:text-white transition-colors"
+                >
+                  Youtube
                 </Link>
               </li>
             </ul>

@@ -23,6 +23,10 @@ import {
   Layers,
   FileText,
   Shuffle,
+  Code,
+  Database,
+  Server,
+  Globe,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { SectionHeading } from "@/components/section-heading"
@@ -273,6 +277,60 @@ export default function ServicesPage() {
             "Process and template development",
             "Tool selection and implementation",
             "PMO staff training and mentoring",
+          ],
+        },
+      ],
+    },
+    {
+      category: "Digital Transformation",
+      description:
+        "Comprehensive digital solutions to help organizations leverage technology for improved project delivery, collaboration, and business outcomes.",
+      icon: <Globe size={32} />,
+      color: "blue",
+      imageSrc: "/digital-transformation-unsplash.jpg",
+      services: [
+        {
+          icon: <Code size={24} />,
+          title: "Agile Development",
+          description: "Implement agile software development practices to deliver high-quality solutions faster.",
+          features: [
+            "DevOps implementation",
+            "CI/CD pipeline setup",
+            "Test automation frameworks",
+            "Agile development coaching",
+          ],
+        },
+        {
+          icon: <Database size={24} />,
+          title: "Data-Driven Projects",
+          description: "Leverage data analytics to make informed project decisions and drive continuous improvement.",
+          features: [
+            "Project analytics implementation",
+            "KPI dashboard development",
+            "Predictive analytics for projects",
+            "Data-driven decision frameworks",
+          ],
+        },
+        {
+          icon: <Server size={24} />,
+          title: "Technology Integration",
+          description: "Seamlessly integrate project management tools and technologies into your existing ecosystem.",
+          features: [
+            "Tool selection and evaluation",
+            "System integration planning",
+            "API and workflow automation",
+            "Legacy system migration",
+          ],
+        },
+        {
+          icon: <Globe size={24} />,
+          title: "Digital Workspace",
+          description: "Create effective digital environments for distributed and hybrid project teams.",
+          features: [
+            "Remote collaboration frameworks",
+            "Digital workspace design",
+            "Virtual team management",
+            "Asynchronous workflow optimization",
           ],
         },
       ],
