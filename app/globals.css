@@ -451,3 +451,9 @@ div {
   line-height: 1.4; /* Increased line height for gradient text */
   padding-bottom: 0.1em; /* Add padding to prevent descenders from being cut off */
 }
+
+/* Add the following CSS rule at the end of the file to override the `translate-y-10` utility. */
+
+.translate-y-10 {
+  --tw-translate-y: 0 !important; /* Override to neutralize the vertical translation */
+}
