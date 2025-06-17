@@ -3,7 +3,7 @@
 import type React from "react"
 
 import { useState, useEffect } from "react"
-import { X } from "lucide-react"
+import { X } from 'lucide-react'
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -25,6 +25,7 @@ interface Product {
   order: number
   categoryColor: string
   lastUpdated: string
+  link: string // Link field is now mandatory
 }
 
 interface EditProductModalProps {
@@ -46,6 +47,7 @@ export function EditProductModal({ isOpen, onClose, onEdit, product }: EditProdu
     image: "",
     badge: "",
     status: "displayed" as "displayed" | "hidden",
+    link: "", // Initialize link field
   })
   const [errors, setErrors] = useState<Record<string, string>>({})
 
@@ -74,6 +76,7 @@ export function EditProductModal({ isOpen, onClose, onEdit, product }: EditProdu
         image: product.image,
         badge: product.badge || "",
         status: product.status,
+        link: product.link || "", // Initialize link from existing product data
       })
     }
   }, [product])
@@ -87,6 +90,7 @@ export function EditProductModal({ isOpen, onClose, onEdit, product }: EditProdu
     if (!formData.keyFeatures.trim()) newErrors.keyFeatures = "Key features are required"
     if (!formData.price.trim()) newErrors.price = "Price is required"
     if (!formData.image.trim()) newErrors.image = "Image is required"
+    if (!formData.link.trim()) newErrors.link = "Product link is required" // Make link mandatory
 
     setErrors(newErrors)
     return Object.keys(newErrors).length === 0
@@ -103,6 +107,7 @@ export function EditProductModal({ isOpen, onClose, onEdit, product }: EditProdu
       keyFeatures: formData.keyFeatures.split("\n").filter((f) => f.trim()),
       categoryColor: getCategoryColor(formData.category),
       badge: formData.badge || undefined,
+      link: formData.link, // Link is now mandatory, no || undefined
       lastUpdated: new Date().toISOString(),
     }
 
@@ -140,7 +145,6 @@ export function EditProductModal({ isOpen, onClose, onEdit, product }: EditProdu
                 <Label htmlFor="title">Product Title *</Label>
                 <Input
                   id="title"
-                  placeholder="e.g., Tumbuh - Learning Management System"
                   value={formData.title}
                   onChange={(e) => setFormData({ ...formData, title: e.target.value })}
                   className={errors.title ? "border-red-500" : ""}
@@ -169,7 +173,6 @@ export function EditProductModal({ isOpen, onClose, onEdit, product }: EditProdu
                 <Textarea
                   id="shortDescription"
                   rows={2}
-                  placeholder="Brief description of the product in one or two sentences"
                   value={formData.shortDescription}
                   onChange={(e) => setFormData({ ...formData, shortDescription: e.target.value })}
                   className={errors.shortDescription ? "border-red-500" : ""}
@@ -182,7 +185,6 @@ export function EditProductModal({ isOpen, onClose, onEdit, product }: EditProdu
                 <Textarea
                   id="whyChooseProduct"
                   rows={4}
-                  placeholder="Explain the unique value proposition and benefits that make this product stand out from competitors. Focus on what problems it solves and how it helps customers achieve their goals."
                   value={formData.whyChooseProduct}
                   onChange={(e) => setFormData({ ...formData, whyChooseProduct: e.target.value })}
                   className={errors.whyChooseProduct ? "border-red-500" : ""}
@@ -237,6 +239,18 @@ export function EditProductModal({ isOpen, onClose, onEdit, product }: EditProdu
                   value={formData.badge}
                   onChange={(e) => setFormData({ ...formData, badge: e.target.value })}
                 />
+              </div>
+
+              <div>
+                <Label htmlFor="link">Product Link *</Label>
+                <Input
+                  id="link"
+                  placeholder="e.g., https://yourproduct.com/buy"
+                  value={formData.link}
+                  onChange={(e) => setFormData({ ...formData, link: e.target.value })}
+                  className={errors.link ? "border-red-500" : ""}
+                />
+                {errors.link && <p className="text-red-500 text-sm mt-1">{errors.link}</p>}
               </div>
 
               <div>

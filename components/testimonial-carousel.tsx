@@ -4,7 +4,7 @@ import type React from "react"
 
 import { useState, useEffect } from "react"
 import Image from "next/image"
-import { ChevronLeft, ChevronRight, Star, Quote } from "lucide-react"
+import { ChevronLeft, ChevronRight, Quote } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { Reveal } from "@/components/reveal-animation"
@@ -145,28 +145,14 @@ export function TestimonialCarousel({ inCombinedSection = false }: TestimonialCa
                   <p className="text-lg md:text-xl text-center mb-8">{testimonial.quote}</p>
 
                   <div className="flex items-center justify-center mb-6">
-                    {[...Array(5)].map((_, i) => (
-                      <Star
-                        key={i}
-                        size={20}
-                        className={cn(
-                          "mx-0.5",
-                          i < testimonial.rating
-                            ? "text-yellow-500 fill-yellow-500"
-                            : "text-gray-300 dark:text-gray-600",
-                        )}
-                      />
-                    ))}
-                  </div>
-
-                  <div className="flex flex-col md:flex-row items-center justify-center text-center md:text-left">
-                    <div className="w-20 h-20 mb-4 md:mb-0 md:mr-4 overflow-hidden rounded-full border-4 border-agile-blue/20 dark:border-agile-blue-dark/20">
+                    <div className="w-20 h-20 mb-4 md:mb-0 md:mr-4 overflow-hidden rounded-full border-4 border-agile-blue/20 dark:border-agile-blue-dark/20 relative">
+                      {" "}
+                      {/* Added relative here */}
                       <Image
                         src={testimonial.image || "/placeholder.svg?height=80&width=80&query=person"}
-                        width={80}
-                        height={80}
                         alt={testimonial.name}
-                        className="object-cover"
+                        fill // This makes the image absolute and fills the parent
+                        className="h-full object-cover"
                       />
                     </div>
                     <div>

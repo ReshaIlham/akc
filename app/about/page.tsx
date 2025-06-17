@@ -129,7 +129,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Our Team - Updated with pattern background and dark mode fixes */}
+      {/* Our Leadership - Redesigned with silhouettes in separate rows */}
       <section className="py-16 md:py-24 relative overflow-hidden">
         <div className="absolute inset-0 dark:opacity-20 opacity-5">
           <div className="absolute top-0 left-0 w-full h-full bg-grid-pattern-enhanced"></div>
@@ -138,45 +138,185 @@ export default function AboutPage() {
         <div className="container relative z-10">
           <SectionHeading
             title="Our Leadership Team"
-            subtitle="Meet the experts behind Agilenesia's success"
+            subtitle="Visionary leaders driving transformation from behind the scenes"
             color="blue"
           />
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[
-              {
-                image: "/team-member-1.png",
-                name: "Sarah Johnson",
-                position: "CEO & Founder",
-                bio: "With over 15 years of experience in project management, Sarah founded Agilenesia to help organizations improve their project delivery capabilities.",
-              },
-              {
-                image: "/team-member-2.png",
-                name: "Michael Chen",
-                position: "Chief Consulting Officer",
-                bio: "Michael leads our consulting practice, bringing 12 years of experience in implementing PMOs and improving project management processes.",
-              },
-              {
-                image: "/team-member-3.png",
-                name: "Anita Wijaya",
-                position: "Head of Training",
-                bio: "Anita oversees our training programs, leveraging her extensive experience in adult education and project management certification.",
-              },
-            ].map((member, index) => (
-              <Reveal key={index} delay={index * 100} direction="up">
-                <Card className="card-hover border-none shadow-lg h-full overflow-hidden dark:bg-gray-800 dark:border dark:border-gray-700">
-                  <div className="relative h-64">
-                    <Image src={member.image || "/placeholder.svg"} fill alt={member.name} className="object-cover" />
+          <div className="space-y-20">
+            {/* Leader 1 - The Architect */}
+            <Reveal delay={100}>
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                {/* Silhouette */}
+                <div className="relative">
+                  <div className="w-80 h-80 mx-auto relative">
+                    {/* Background glow */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-agile-blue/20 to-agile-red/20 dark:from-agile-blue-dark/30 dark:to-agile-red-dark/30 rounded-full blur-3xl"></div>
+
+                    {/* Silhouette */}
+                    <div className="relative w-full h-full bg-gradient-to-b from-gray-800 to-black dark:from-gray-600 dark:to-gray-800 rounded-full flex items-end justify-center overflow-hidden">
+                      {/* Person silhouette shape */}
+                      <div
+                        className="w-32 h-64 bg-black dark:bg-gray-900 relative"
+                        style={{
+                          clipPath:
+                            "polygon(30% 0%, 70% 0%, 85% 15%, 85% 35%, 75% 45%, 85% 55%, 85% 100%, 15% 100%, 15% 55%, 25% 45%, 15% 35%, 15% 15%)",
+                        }}
+                      >
+                        {/* Subtle inner glow */}
+                        <div className="absolute inset-0 bg-gradient-to-t from-agile-blue/10 to-transparent"></div>
+                      </div>
+                    </div>
+
+                    {/* Floating elements */}
+                    <div className="absolute top-4 right-4 w-3 h-3 bg-agile-blue rounded-full animate-pulse"></div>
+                    <div className="absolute bottom-8 left-8 w-2 h-2 bg-agile-red rounded-full animate-pulse delay-1000"></div>
                   </div>
-                  <CardContent className="p-6">
-                    <h3 className="text-xl font-bold mb-1 dark:text-white">{member.name}</h3>
-                    <p className="text-agile-blue dark:text-agile-blue-dark font-medium mb-3">{member.position}</p>
-                    <p className="text-agile-gray dark:text-gray-300">{member.bio}</p>
-                  </CardContent>
-                </Card>
-              </Reveal>
-            ))}
+                </div>
+
+                {/* Content */}
+                <div className="space-y-6">
+                  <div>
+                    <h3 className="text-4xl font-bold mb-2 text-gradient-blue">The Architect</h3>
+                    <p className="text-xl text-agile-blue dark:text-agile-blue-dark font-semibold">
+                      Chief Strategy Officer
+                    </p>
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-6">
+                    <div className="text-center p-4 bg-gradient-to-br from-agile-blue/10 to-transparent dark:from-agile-blue-dark/20 rounded-lg border border-agile-blue/20 dark:border-agile-blue-dark/30">
+                      <div className="text-3xl font-bold text-agile-blue dark:text-agile-blue-dark">20+</div>
+                      <div className="text-sm text-agile-gray dark:text-gray-300">Years Experience</div>
+                    </div>
+                    <div className="text-center p-4 bg-gradient-to-br from-agile-green/10 to-transparent dark:from-agile-green-dark/20 rounded-lg border border-agile-green/20 dark:border-agile-green-dark/30">
+                      <div className="text-3xl font-bold text-agile-green dark:text-agile-green-dark">500+</div>
+                      <div className="text-sm text-agile-gray dark:text-gray-300">Projects Led</div>
+                    </div>
+                  </div>
+
+                  <div>
+                    <h4 className="text-lg font-semibold mb-3 dark:text-white">Background Story</h4>
+                    <p className="text-agile-gray dark:text-gray-300 leading-relaxed">
+                      A former Fortune 500 executive who orchestrated digital transformations across three continents.
+                      After witnessing the collapse of traditional project management in the digital age, they dedicated
+                      their expertise to revolutionizing how organizations approach complex initiatives. Their identity
+                      remains confidential due to ongoing consulting relationships with global enterprises.
+                    </p>
+                  </div>
+
+                  <div>
+                    <h4 className="text-lg font-semibold mb-3 dark:text-white">Core Expertise</h4>
+                    <div className="flex flex-wrap gap-2">
+                      {["Strategic Planning", "Digital Transformation", "Change Management", "Executive Coaching"].map(
+                        (skill, index) => (
+                          <span
+                            key={index}
+                            className="px-4 py-2 bg-gradient-to-r from-agile-blue/10 to-agile-blue/5 dark:from-agile-blue-dark/20 dark:to-agile-blue-dark/10 text-agile-blue dark:text-agile-blue-dark text-sm font-medium rounded-full border border-agile-blue/30 dark:border-agile-blue-dark/40"
+                          >
+                            {skill}
+                          </span>
+                        ),
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </Reveal>
+
+            {/* Leader 2 - The Catalyst */}
+            <Reveal delay={300}>
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                {/* Content - Left side for second leader */}
+                <div className="space-y-6 lg:order-1">
+                  <div>
+                    <h3 className="text-4xl font-bold mb-2 text-gradient-green">The Catalyst</h3>
+                    <p className="text-xl text-agile-green dark:text-agile-green-dark font-semibold">
+                      Head of Innovation
+                    </p>
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-6">
+                    <div className="text-center p-4 bg-gradient-to-br from-agile-green/10 to-transparent dark:from-agile-green-dark/20 rounded-lg border border-agile-green/20 dark:border-agile-green-dark/30">
+                      <div className="text-3xl font-bold text-agile-green dark:text-agile-green-dark">15+</div>
+                      <div className="text-sm text-agile-gray dark:text-gray-300">Years Experience</div>
+                    </div>
+                    <div className="text-center p-4 bg-gradient-to-br from-agile-red/10 to-transparent dark:from-agile-red-dark/20 rounded-lg border border-agile-red/20 dark:border-agile-red-dark/30">
+                      <div className="text-3xl font-bold text-agile-red dark:text-agile-red-dark">300+</div>
+                      <div className="text-sm text-agile-gray dark:text-gray-300">Transformations</div>
+                    </div>
+                  </div>
+
+                  <div>
+                    <h4 className="text-lg font-semibold mb-3 dark:text-white">Background Story</h4>
+                    <p className="text-agile-gray dark:text-gray-300 leading-relaxed">
+                      A renowned methodology pioneer who developed frameworks now used by leading tech companies
+                      worldwide. Having worked in stealth mode for government agencies and unicorn startups, they bring
+                      unparalleled insights into scaling agile practices. Their anonymity protects proprietary
+                      methodologies and maintains neutrality across competitive industries.
+                    </p>
+                  </div>
+
+                  <div>
+                    <h4 className="text-lg font-semibold mb-3 dark:text-white">Core Expertise</h4>
+                    <div className="flex flex-wrap gap-2">
+                      {["Agile Methodologies", "Team Dynamics", "Process Innovation", "Leadership Development"].map(
+                        (skill, index) => (
+                          <span
+                            key={index}
+                            className="px-4 py-2 bg-gradient-to-r from-agile-green/10 to-agile-green/5 dark:from-agile-green-dark/20 dark:to-agile-green-dark/10 text-agile-green dark:text-agile-green-dark text-sm font-medium rounded-full border border-agile-green/30 dark:border-agile-green-dark/40"
+                          >
+                            {skill}
+                          </span>
+                        ),
+                      )}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Silhouette - Right side for second leader */}
+                <div className="relative lg:order-2">
+                  <div className="w-80 h-80 mx-auto relative">
+                    {/* Background glow */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-agile-green/20 to-agile-red/20 dark:from-agile-green-dark/30 dark:to-agile-red-dark/30 rounded-full blur-3xl"></div>
+
+                    {/* Silhouette */}
+                    <div className="relative w-full h-full bg-gradient-to-b from-gray-800 to-black dark:from-gray-600 dark:to-gray-800 rounded-full flex items-end justify-center overflow-hidden">
+                      {/* Person silhouette shape - slightly different */}
+                      <div
+                        className="w-36 h-64 bg-black dark:bg-gray-900 relative"
+                        style={{
+                          clipPath:
+                            "polygon(25% 0%, 75% 0%, 90% 20%, 90% 40%, 80% 50%, 90% 60%, 90% 100%, 10% 100%, 10% 60%, 20% 50%, 10% 40%, 10% 20%)",
+                        }}
+                      >
+                        {/* Subtle inner glow */}
+                        <div className="absolute inset-0 bg-gradient-to-t from-agile-green/10 to-transparent"></div>
+                      </div>
+                    </div>
+
+                    {/* Floating elements */}
+                    <div className="absolute top-8 left-4 w-3 h-3 bg-agile-green rounded-full animate-pulse delay-500"></div>
+                    <div className="absolute bottom-4 right-8 w-2 h-2 bg-agile-red rounded-full animate-pulse delay-1500"></div>
+                  </div>
+                </div>
+              </div>
+            </Reveal>
           </div>
+
+          {/* Disclaimer */}
+          <Reveal delay={500}>
+            <div className="mt-16 text-center">
+              <div className="max-w-3xl mx-auto p-8 bg-gradient-to-r from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-700 rounded-2xl border border-gray-200 dark:border-gray-600">
+                <p className="text-agile-gray dark:text-gray-300 leading-relaxed">
+                  <span className="font-semibold text-agile-blue dark:text-agile-blue-dark">
+                    Confidential Leadership:
+                  </span>{" "}
+                  Our leadership team operates with discretion to maintain objectivity and protect client
+                  confidentiality. Their combined expertise spans decades of transformational success across industries
+                  and continents, bringing unparalleled insights to every engagement.
+                </p>
+              </div>
+            </div>
+          </Reveal>
         </div>
       </section>
 

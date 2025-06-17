@@ -7,6 +7,7 @@ import { Footer } from "@/components/footer"
 import { ThemeProvider } from "@/components/theme-provider"
 import { CursorGlow } from "@/components/cursor-glow"
 import { PageTransition } from "@/components/page-transition"
+import { WhatsappButton } from "@/components/whatsapp-button" // Import the new component
 
 const inter = Inter({
   subsets: ["latin"],
@@ -47,6 +48,7 @@ export default function RootLayout({
               <Footer />
             </div>
           </PageTransition>
+          <WhatsappButton /> {/* Add the WhatsApp button here */}
         </ThemeProvider>
       </body>
     </html>

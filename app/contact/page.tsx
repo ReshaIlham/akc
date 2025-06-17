@@ -191,11 +191,16 @@ export default function ContactPage() {
                       <MapPin className="text-agile-red mr-3 mt-1" />
                       <div>
                         <h4 className="font-semibold">Address</h4>
-                        <p className="text-agile-gray">
+                        <a
+                          href="https://www.google.com/maps/search/?api=1&query=123+Project+Street,+Suite+100,+Jakarta,+Indonesia+12345"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-agile-blue hover:underline dark:text-agile-blue-dark"
+                        >
                           123 Project Street, Suite 100
                           <br />
                           Jakarta, Indonesia 12345
-                        </p>
+                        </a>
                       </div>
                     </div>
                     <div className="flex items-start">
@@ -217,56 +222,6 @@ export default function ContactPage() {
               </div>
             </Reveal>
           </div>
-        </div>
-      </section>
-
-      {/* Map Section */}
-      <section id="visit-office" className="py-16 md:py-24 bg-gray-50 dark:bg-gray-900">
-        <div className="container">
-          <SectionHeading
-            title="Visit Our Office"
-            subtitle="We're conveniently located in the heart of Jakarta's business district"
-            color="red"
-          />
-
-          <Reveal>
-            <div className="relative h-[400px] md:h-[500px] rounded-lg overflow-hidden shadow-lg">
-              {/* Interactive Map with Pin */}
-              <div className="relative w-full h-full bg-gray-200 dark:bg-gray-700">
-                <Image src="/jakarta-map.png" fill alt="Office Location Map" className="object-cover" />
-
-                {/* Office Pin Point */}
-                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                  <div className="relative">
-                    {/* Pulsing circle animation */}
-                    <div className="absolute -inset-4 bg-agile-red rounded-full opacity-20 animate-pulse"></div>
-                    <div
-                      className="absolute -inset-2 bg-agile-red rounded-full opacity-40 animate-pulse"
-                      style={{ animationDelay: "0.5s" }}
-                    ></div>
-
-                    {/* Main pin */}
-                    <div className="bg-agile-red w-8 h-8 rounded-full flex items-center justify-center shadow-lg">
-                      <MapPin className="text-white h-5 w-5" />
-                    </div>
-
-                    {/* Office info tooltip */}
-                    <div className="absolute -top-16 left-1/2 transform -translate-x-1/2 bg-white dark:bg-gray-800 px-3 py-2 rounded-lg shadow-lg border border-gray-200 dark:border-gray-600 whitespace-nowrap">
-                      <div className="text-sm font-medium text-agile-dark dark:text-white">Agilenesia Office</div>
-                      <div className="text-xs text-agile-gray dark:text-gray-300">123 Project Street, Jakarta</div>
-                      {/* Tooltip arrow */}
-                      <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-white dark:border-t-gray-800"></div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Map controls overlay */}
-                <div className="absolute top-4 right-4 bg-white dark:bg-gray-800 rounded-lg shadow-lg p-2">
-                  <div className="text-xs text-agile-gray dark:text-gray-300">📍 Jakarta, Indonesia</div>
-                </div>
-              </div>
-            </div>
-          </Reveal>
         </div>
       </section>
 

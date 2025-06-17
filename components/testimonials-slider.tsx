@@ -153,7 +153,7 @@ export function TestimonialsSlider() {
                         width={64}
                         height={64}
                         alt={testimonial.name}
-                        className="object-cover"
+                        className="h-full object-cover"
                       />
                     </div>
                     <div>

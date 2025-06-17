@@ -79,7 +79,7 @@ export function Footer() {
                   rel="noopener noreferrer"
                   className="text-gray-300 hover:text-white transition-colors"
                 >
-                  Youtube
+                  Agilenesia TV
                 </Link>
               </li>
             </ul>

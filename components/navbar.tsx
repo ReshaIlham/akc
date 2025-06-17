@@ -54,7 +54,7 @@ export function Navbar() {
       label: "Our Channel",
       children: [
         { href: "https://agilenesia.id/", label: "Agilenesia.id", external: true },
-        { href: "https://www.youtube.com/@agilenesiatv2011", label: "Youtube", external: true },
+        { href: "https://www.youtube.com/@agilenesiatv2011", label: "Agilenesia TV", external: true }, // Changed label here
       ],
     },
   ]
